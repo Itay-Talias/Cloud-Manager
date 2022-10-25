@@ -13,4 +13,14 @@ class FetchDetailsFromAPI {
             };
         });
     }
+
+    public async GetInstanceByTypeAndStates(
+        states: string = "",
+        types: string = ""
+    ): Promise<ec2_instance[]> {
+        const ec2InstanceArr = await $.get(
+            `./instances?states=${states}&types=${types}`
+        );
+        return FetchDetailsFromAPI.parsingJSONToEc2Instces(ec2InstanceArr);
+    }
 }
