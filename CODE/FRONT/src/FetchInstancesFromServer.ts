@@ -1,7 +1,7 @@
 class FetchInstancesFromServer {
     private static parsingJSONToEc2Instces(
         ec2InstanceArr: any[]
-    ): ec2_instance[] {
+    ): EC2_Instance[] {
         return ec2InstanceArr.map((instance: any) => {
             return {
                 ID: instance.ID,
@@ -16,7 +16,7 @@ class FetchInstancesFromServer {
     public static async FetchInstanceByTypeAndStates(
         states: string = "",
         types: string = ""
-    ): Promise<ec2_instance[]> {
+    ): Promise<EC2_Instance[]> {
         const ec2InstanceArr = await $.get(
             `./instances?states=${states}&types=${types}`
         );

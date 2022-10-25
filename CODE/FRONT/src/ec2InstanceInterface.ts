@@ -1,4 +1,4 @@
-interface ec2_instance {
+interface EC2_Instance {
     ID: string;
     Name: string;
     State: string;
