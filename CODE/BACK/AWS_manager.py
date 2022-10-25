@@ -76,4 +76,11 @@ class AWS_Manager:
         except Exception as e:
             print(e)
         
-       
+    def terminate_instance(self, instance_id: str) -> None:
+        try:
+            instance = self.ec2_resource.Instance(instance_id)
+            instance.terminate()
+            instance.wait_until_terminated()
+        except Exception as e:
+            print(e)
+  
