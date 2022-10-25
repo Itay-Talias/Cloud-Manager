@@ -18,3 +18,19 @@ class AWS_Manager:
             "Type": instance.instance_type,
             "Public IPv4 address": instance.public_ip_address
         }
+
+    def filter_instances_by_states(self, states: List[str]) -> List[Dict[str, str]]:
+        instances = self.ec2_resource.instances.filter(
+            Filters=[
+                {
+                    "Name": "instance-state-name",
+                    "Values": states
+                }
+            ]
+        )
+
+        filtered_instances: List[Dict[str, str]] = []
+        for instance in instances:
+            filtered_instances.append(self.get_instance_info(instance.id))
+
+        return filtered_instances
