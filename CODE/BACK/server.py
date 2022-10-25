@@ -1,11 +1,15 @@
 from requests import Response
 from fastapi import FastAPI , status ,  HTTPException , Request , Response
+from fastapi.staticfiles import StaticFiles
 import uvicorn
 from fastapi import Depends, FastAPI
 from AWS_manager import AWS_Manager
 from typing import List, Dict,Union
+from fastapi.responses import FileResponse
 
 app = FastAPI()
+app.mount("/FRONT", StaticFiles(directory="FRONT"), name="FRONT")
+
 accetable_states=["running","stopped","terminated"]
 accetable_types=["t2.micro"]
 
@@ -38,7 +42,7 @@ async def get_instances(states: str="",types: str="",response: Response=None) ->
 
 @app.get("/")
 async def root():
-    return "Server is running"
+    return FileResponse("./FRONT/index.html")
     
 if __name__ == "__main__":
     uvicorn.run("server:app", host="127.0.0.1",
