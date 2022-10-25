@@ -24,13 +24,13 @@ def check_params(params_received: List[str],acceptable_params: List[str]):
 
 @app.get("/instances/")
 async def get_instances(states: str="",types: str="",response: Response=None) -> List: 
-    AWS_ACCESS_KEY_ID=""
-    AWS_SECRET_ACCESS_KEY=""
+    AWS_ACCESS_KEY_ID="AKIAYPGB5TBPUNKXDLTN"
+    AWS_SECRET_ACCESS_KEY="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"
     aws_manager= AWS_Manager(AWS_ACCESS_KEY_ID,AWS_SECRET_ACCESS_KEY)
     if states == "" and types == "":
         response.status_code = status.HTTP_400_BAD_REQUEST
         return {"Error": "no params received"}
-    elif check_params(params_received= states,accetable_params=acceptable_states)==False or check_params(params_received=types,accetable_params=acceptable_types)==False:
+    elif check_params(params_received= states,acceptable_params=acceptable_states)==False or check_params(params_received=types,acceptable_params=acceptable_types)==False:
         response.status_code = status.HTTP_400_BAD_REQUEST
         return {"Error": "states or types are invalid"}
     elif states == "":
@@ -56,4 +56,4 @@ async def root():
     
 if __name__ == "__main__":
     uvicorn.run("server:app", host="127.0.0.1",
-                port=8012, log_level="info", reload=True)
+                port=8013, log_level="info", reload=True)
