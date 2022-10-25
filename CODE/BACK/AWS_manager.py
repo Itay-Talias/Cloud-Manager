@@ -69,4 +69,11 @@ class AWS_Manager:
             print(e)
 
 
-
+    def reboot_instance(self, instance_id: str) -> None:
+        try:
+            instance = self.ec2_resource.Instance(instance_id)
+            instance.reboot()
+        except Exception as e:
+            print(e)
+        
+        
