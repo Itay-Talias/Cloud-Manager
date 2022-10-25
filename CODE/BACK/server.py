@@ -42,13 +42,13 @@ async def get_instances(states: str="",types: str="",response: Response=None) ->
     return results
 
 def terminate_instance(aws_manager: AWS_Manager ,instance_id: str,current_state: str):
-    a=5
+    aws_manager.terminate_instance(instance_id=instance_id)
 def stop_instance(aws_manager: AWS_Manager ,instance_id: str,current_state: str):
-    a=5
+    aws_manager.stop_instance(instance_id=instance_id)
 def reboot_instance(aws_manager: AWS_Manager,instance_id: str,current_state: str):
-    a=5
+    aws_manager.reboot_instance(instance_id=instance_id)
 def start_instance(aws_manager: AWS_Manager,instance_id: str,current_state: str):
-    a=5
+    aws_manager.start_instance(instance_id=instance_id)
 
 @app.patch("instances/{instance_id}")
 async def operate(instance_id,request: Request ,response:Response) -> Dict[str:str]:
@@ -60,7 +60,6 @@ async def operate(instance_id,request: Request ,response:Response) -> Dict[str:s
     operations_dict={"terminated":terminate_instance, "stopped": stop_instance, "running": start_instance , "reboot": reboot_instance}
     operations_dict[new_state](aws_manager,instance_id=instance_id,current_state=instance_info["State"])
     
-
 @app.get("/")
 async def root():
     return FileResponse("./FRONT/index.html")
