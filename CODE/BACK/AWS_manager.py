@@ -1,7 +1,6 @@
 import boto3
 from typing import List, Dict
 
-
 class AWS_Manager:
     def __init__(self, aws_access_key_id: str, aws_secret_access_key: str):
         self.ec2_resource = boto3.resource("ec2",
@@ -50,3 +49,45 @@ class AWS_Manager:
             filtered_instances.append(self.get_instance_info(instance.id))
 
         return filtered_instances
+
+    def stop_instance(self, instance_id: str) -> None:
+        try:
+            instance = self.ec2_resource.Instance(instance_id)
+            instance.stop()
+            instance.wait_until_stopped()
+        except Exception as e:
+            print(e)
+    
+
+    def start_instance(self, instance_id: str) -> None:
+        try:
+            instance = self.ec2_resource.Instance(instance_id)
+            instance.start()
+            instance.wait_until_running()
+        except Exception as e:
+            print(e)
+
+
+    def reboot_instance(self, instance_id: str) -> None:
+        try:
+            instance = self.ec2_resource.Instance(instance_id)
+            instance.reboot()
+        except Exception as e:
+            print(e)
+        
+    def terminate_instance(self, instance_id: str) -> None:
+        try:
+            instance = self.ec2_resource.Instance(instance_id)
+            instance.terminate()
+            instance.wait_until_terminated()
+        except Exception as e:
+            print(e)
+    
+    def get_all_instances(self) -> List[Dict[str, str]]:
+        instances = self.ec2_resource.instances.all()
+
+        result: List[Dict[str, str]] = []
+        for instance in instances:
+            result.append(self.get_instance_info(instance.id))
+
+        return result
