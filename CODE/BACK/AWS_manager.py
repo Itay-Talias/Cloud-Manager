@@ -83,4 +83,12 @@ class AWS_Manager:
             instance.wait_until_terminated()
         except Exception as e:
             print(e)
-  
+    
+    def get_all_instances(self) -> List[Dict[str, str]]:
+        instances = self.ec2_resource.instances.all()
+
+        result: List[Dict[str, str]] = []
+        for instance in instances:
+            result.append(self.get_instance_info(instance.id))
+
+        return result
