@@ -60,4 +60,13 @@ class AWS_Manager:
             print(e)
     
 
+    def start_instance(self, instance_id: str) -> None:
+        try:
+            instance = self.ec2_resource.Instance(instance_id)
+            instance.start()
+            instance.wait_until_running()
+        except Exception as e:
+            print(e)
+
+
 
