@@ -34,3 +34,19 @@ class AWS_Manager:
             filtered_instances.append(self.get_instance_info(instance.id))
 
         return filtered_instances
+
+    def filter_instances_by_types(self, types: List[str]) -> List[Dict[str, str]]:
+        instances = self.ec2_resource.instances.filter(
+            Filters=[
+                {
+                    "Name": "instance-type",
+                    "Values": types
+                }
+            ]
+        )
+
+        filtered_instances: List[Dict[str, str]] = []
+        for instance in instances:
+            filtered_instances.append(self.get_instance_info(instance.id))
+
+        return filtered_instances
