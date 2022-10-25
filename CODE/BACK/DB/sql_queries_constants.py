@@ -1,5 +1,3 @@
-from tkinter.tix import Select
-
 
 SELECT_USERNAME_BY_DETAILES = """SELECT username 
                             FROM Users_info 
