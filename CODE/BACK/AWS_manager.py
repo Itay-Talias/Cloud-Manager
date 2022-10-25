@@ -16,7 +16,7 @@ class AWS_Manager:
             "State": instance.state["Name"],
             "AMI": instance.image.id,
             "Type": instance.instance_type,
-            "Public IPv4 address": instance.public_ip_address
+            "Public_IPv4_address": instance.public_ip_address
         }
 
     def filter_instances_by_states(self, states: List[str]) -> List[Dict[str, str]]:

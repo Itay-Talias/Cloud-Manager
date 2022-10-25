@@ -31,116 +31,16 @@
 
             <div class="content">
                 <section>
-                    <div
-                        id="instances-container"
-                        class="swiper mySwiper container"
-                    >
-                        <div class="swiper-wrapper">
-                            <div class="swiper-slide card">
-                                <div class="card-content">
-                                    <div class="image">
-                                        <img src="FRONT/images/ec2_img.png" />
-                                    </div>
+                    <div id="instances-container" class="swiper mySwiper container">
 
-                                    <div class="ec2_display">
-                                        <span class="ec2_name"
-                                            >EC2 Instance Name</span
-                                        >
-                                        <span class="ec2_type">EC2 Type</span>
-                                    </div>
-
-                                    <div class="ec2_info">
-                                        <li>ID: i-87519665</li>
-                                        <li>State: Running</li>
-                                        <li>AMI: linux</li>
-                                        <li>IPV4: 0.0.0.0</li>
-                                    </div>
-
-                                    <div class="instance_options">
-                                        <i class="fa-solid fa-play fa-1x"></i>
-                                        <i class="fa-solid fa-stop fa-1x"></i>
-                                        <i
-                                            class="fa-solid fa-power-off fa-1x"
-                                        ></i>
-                                        <i
-                                            class="fa-solid fa-arrows-rotate fa-1x"
-                                        ></i>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="swiper-slide card">
-                                <div class="card-content">
-                                    <div class="image">
-                                        <img src="FRONT/images/ec2_img.png" />
-                                    </div>
-
-                                    <div class="ec2_display">
-                                        <span class="ec2_name"
-                                            >EC2 Instance Name</span
-                                        >
-                                        <span class="ec2_type">EC2 Type</span>
-                                    </div>
-
-                                    <div class="ec2_info">
-                                        <li>ID: i-87519665</li>
-                                        <li>State: Running</li>
-                                        <li>AMI: linux</li>
-                                        <li>IPV4: 0.0.0.0</li>
-                                    </div>
-
-                                    <div class="instance_options">
-                                        <i class="fa-solid fa-play fa-1x"></i>
-                                        <i class="fa-solid fa-stop fa-1x"></i>
-                                        <i
-                                            class="fa-solid fa-power-off fa-1x"
-                                        ></i>
-                                        <i
-                                            class="fa-solid fa-arrows-rotate fa-1x"
-                                        ></i>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="swiper-slide card">
-                                <div class="card-content">
-                                    <div class="image">
-                                        <img src="FRONT/images/ec2_img.png" />
-                                    </div>
-
-                                    <div class="ec2_display">
-                                        <span class="ec2_name"
-                                            >EC2 Instance Name</span
-                                        >
-                                        <span class="ec2_type">EC2 Type</span>
-                                    </div>
-
-                                    <div class="ec2_info">
-                                        <li>ID: i-87519665</li>
-                                        <li>State: Running</li>
-                                        <li>AMI: linux</li>
-                                        <li>IPV4: 0.0.0.0</li>
-                                    </div>
-
-                                    <div class="instance_options">
-                                        <i class="fa-solid fa-play fa-1x"></i>
-                                        <i class="fa-solid fa-stop fa-1x"></i>
-                                        <i
-                                            class="fa-solid fa-power-off fa-1x"
-                                        ></i>
-                                        <i
-                                            class="fa-solid fa-arrows-rotate fa-1x"
-                                        ></i>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
                     </div>
+            
 
                     <div class="swiper-button-next"></div>
                     <div class="swiper-button-prev"></div>
                     <div class="swiper-pagination"></div>
                 </section>
+
                 <div class="bg-container">
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -232,6 +132,40 @@
             </div>
         </div>
 
+
+<!-- ============================= TEMPLATE SCRIPTS ============================= -->
+
+        <script id="instance-card-template" type="text/x-handlebars-template">
+            {{#each instances}}
+                <div class="swiper-slide card">
+                    <div class="card-content">
+                        <div class="image">
+                            <img src="./images/ec2_img.png" />
+                        </div>
+
+                        <div class="ec2_display">
+                            <span class="ec2_name">{{ID}}</span>
+                            <span class="ec2_type">{{Type}}</span>
+                        </div>
+
+                        <div class="ec2_info">
+                            <li>ID: {{ID}}</li>
+                            <li>State: {{State}}</li>
+                            <li>AMI: {{AMI}}</li>
+                            <li>IPV4: {{PublicIPv4Address}}</li>
+                        </div>
+
+                        <div class="instance_options">
+                            <i class="fa-solid fa-play fa-1x"></i>
+                            <i class="fa-solid fa-stop fa-1x"></i>
+                            <i class="fa-solid fa-power-off fa-1x"></i>
+                            <i class="fa-solid fa-arrows-rotate fa-1x"></i>
+                        </div>
+                    </div>
+                </div>
+            {{/each}} 
+        </script>
+
         <!-- Swiper JS -->
         <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js
@@ -254,5 +188,15 @@
                 },
             });
         </script>
+
+
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.js"></script>
+        <script src="https://code.jquery.com/jquery-3.6.1.js" integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script>
+        <script src="./FRONT/build/ec2InstanceInterface.js"></script>
+        <script src="./FRONT/build/DataModule.js"></script>
+        <script src="./FRONT/build/FetchInstancesFromServer.js"></script>
+        <script src="./FRONT/build/RenderModule.js"></script>
+        <script src="./FRONT/build/ControllerModule.js"></script>
     </body>
 </html>
