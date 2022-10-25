@@ -13,13 +13,24 @@
             rel="stylesheet"
             href="https://unpkg.com/swiper/swiper-bundle.min.css"
         />
-        <link rel="stylesheet" href="FRONT/style.css" />
+        <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+        integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT"
+        crossorigin="anonymous"
+    />
+    <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css"
+    />
+        <link rel="stylesheet" href="style.css" />
+
     </head>
 
     <body>
         <div class="banner">
             <div class="navbar">
-                <img class="logo" src="FRONT/images/logo.png" />
+                <img class="logo" src="./images/logo.png">
                 <ul>
                     <li><a href="#">Home</a></li>
                     <li><a href="#">About</a></li>
@@ -28,17 +39,98 @@
                     <li><a href="#">S3</a></li>
                 </ul>
             </div>
-
+    
             <div class="content">
                 <section>
                     <div id="instances-container" class="swiper mySwiper container">
-
-                    </div>
+                        <div class="swiper-wrapper">
+                            <div class="swiper-slide card">
+                                <div class="card-content">
+                                    <div class="image">
+                                        <img src="./images/ec2_img.png">
+                                    </div>
             
-
+                                    <div class="ec2_display">
+                                        <span class="ec2_name">EC2 Instance Name</span>
+                                        <span class="ec2_type">EC2 Type</span>
+                                    </div>
+            
+                                    <div class="ec2_info">  
+                                        <li>ID: i-87519665</li>
+                                        <li>State: Running</li>
+                                        <li>AMI: linux</li>
+                                        <li>IPV4: 0.0.0.0</li>
+                                    </div>
+            
+                                    <div class="instance_options">
+                                        <i class="fa-solid fa-play fa-1x"></i>
+                                        <i class="fa-solid fa-stop fa-1x"></i>
+                                        <i class="fa-solid fa-power-off fa-1x"></i>
+                                        <i class="fa-solid fa-arrows-rotate fa-1x"></i>
+                                    </div>
+                                </div>
+                            </div>
+    
+                            <div class="swiper-slide card">
+                                <div class="card-content">
+                                    <div class="image">
+                                        <img src="./images/ec2_img.png">
+                                    </div>
+            
+                                    <div class="ec2_display">
+                                        <span class="ec2_name">EC2 Instance Name</span>
+                                        <span class="ec2_type">EC2 Type</span>
+                                    </div>
+            
+                                    <div class="ec2_info">  
+                                        <li>ID: i-87519665</li>
+                                        <li>State: Running</li>
+                                        <li>AMI: linux</li>
+                                        <li>IPV4: 0.0.0.0</li>
+                                    </div>
+            
+                                    <div class="instance_options">
+                                        <i class="fa-solid fa-play fa-1x"></i>
+                                        <i class="fa-solid fa-stop fa-1x"></i>
+                                        <i class="fa-solid fa-power-off fa-1x"></i>
+                                        <i class="fa-solid fa-arrows-rotate fa-1x"></i>
+                                    </div>
+                                </div>
+                            </div>
+    
+                            <div class="swiper-slide card">
+                                <div class="card-content">
+                                    <div class="image">
+                                        <img src="./images/ec2_img.png">
+                                    </div>
+            
+                                    <div class="ec2_display">
+                                        <span class="ec2_name">EC2 Instance Name</span>
+                                        <span class="ec2_type">EC2 Type</span>
+                                    </div>
+            
+                                    <div class="ec2_info">  
+                                        <li>ID: i-87519665</li>
+                                        <li>State: Running</li>
+                                        <li>AMI: linux</li>
+                                        <li>IPV4: 0.0.0.0</li>
+                                    </div>
+            
+                                    <div class="instance_options">
+                                        <i class="fa-solid fa-play fa-1x"></i>
+                                        <i class="fa-solid fa-stop fa-1x"></i>
+                                        <i class="fa-solid fa-power-off fa-1x"></i>
+                                        <i class="fa-solid fa-arrows-rotate fa-1x"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                
                     <div class="swiper-button-next"></div>
                     <div class="swiper-button-prev"></div>
                     <div class="swiper-pagination"></div>
+                
                 </section>
 
                 <div class="bg-container">
@@ -110,25 +202,63 @@
                         ></path>
                     </svg>
                 </div>
+
                 <div class="box">
                     <div class="wave one"></div>
                     <div class="wave two"></div>
                     <div class="wave three"></div>
                 </div>
-                <section title=".slideThree">
-                    <!-- .slideThree -->
-                    <div class="slideThree">
-                        <input
-                            type="checkbox"
-                            value="None"
-                            id="slideThree"
-                            name="check"
-                            checked
-                        />
-                        <label for="slideThree"></label>
-                    </div>
-                    <!-- end .slideThree -->
-                </section>
+
+                <div class="filter-bar">
+                    <ul>
+                        <li><label>Types:</label></li>
+                        <li>
+                            <label class="filter">
+                                t2-micro
+                                <input type="checkbox" checked="checked" />
+                                <span class="checkmark"></span>
+                            </label>
+                        </li>
+                        <li><label>States:</label></li>
+                        <li>
+                            <label class="filter">
+                                running
+                                <input type="checkbox" checked="checked" />
+                                <span class="checkmark"></span>
+                            </label>
+                        </li>
+                        <li>
+                            <label class="filter">
+                                stopped
+                                <input type="checkbox" checked="checked" />
+                                <span class="checkmark"></span>
+                            </label>
+                        </li>
+                        <li>
+                            <label class="filter">
+                                termineted
+                                <input type="checkbox" checked="checked" />
+                                <span class="checkmark"></span>
+                            </label>
+                        </li>
+                        <li>
+                            <label class="filter">
+                                reboot
+                                <input type="checkbox" checked="checked" />
+                                <span class="checkmark"></span>
+                            </label>
+                        </li>
+                        <li>
+                            <button
+                                id="filter-btn"
+                                class="btn btn-outline-secondary"
+                                type="button"
+                            >
+                                <i class="bi bi-funnel"></i> Filter
+                            </button>
+                        </li>
+                    </ul>
+                </div>
             </div>
         </div>
 
@@ -189,6 +319,11 @@
             });
         </script>
 
+        <script
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8"
+        crossorigin="anonymous"
+        ></script>
 
 
         <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.js"></script>
