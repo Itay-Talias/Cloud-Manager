@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css"/>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="banner">
+        <div class="navbar">
+            <img class="logo" src="./images/logo.png">
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Contact Us</a></li>
+                <li><a href="#">EC2</a></li>
+                <li><a href="#">S3</a></li>
+            </ul>
+        </div>
+
+        <div class="content">
+            <section>
+                <div id="instances-container" class="swiper mySwiper container">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide card">
+                            <div class="card-content">
+                                <div class="image">
+                                    <img src="./images/ec2_img.png">
+                                </div>
+        
+                                <div class="ec2_display">
+                                    <span class="ec2_name">EC2 Instance Name</span>
+                                    <span class="ec2_type">EC2 Type</span>
+                                </div>
+        
+                                <div class="ec2_info">  
+                                    <li>ID: i-87519665</li>
+                                    <li>State: Running</li>
+                                    <li>AMI: linux</li>
+                                    <li>IPV4: 0.0.0.0</li>
+                                </div>
+        
+                                <div class="instance_options">
+                                    <i class="fa-solid fa-play fa-1x"></i>
+                                    <i class="fa-solid fa-stop fa-1x"></i>
+                                    <i class="fa-solid fa-power-off fa-1x"></i>
+                                    <i class="fa-solid fa-arrows-rotate fa-1x"></i>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="swiper-slide card">
+                            <div class="card-content">
+                                <div class="image">
+                                    <img src="./images/ec2_img.png">
+                                </div>
+        
+                                <div class="ec2_display">
+                                    <span class="ec2_name">EC2 Instance Name</span>
+                                    <span class="ec2_type">EC2 Type</span>
+                                </div>
+        
+                                <div class="ec2_info">  
+                                    <li>ID: i-87519665</li>
+                                    <li>State: Running</li>
+                                    <li>AMI: linux</li>
+                                    <li>IPV4: 0.0.0.0</li>
+                                </div>
+        
+                                <div class="instance_options">
+                                    <i class="fa-solid fa-play fa-1x"></i>
+                                    <i class="fa-solid fa-stop fa-1x"></i>
+                                    <i class="fa-solid fa-power-off fa-1x"></i>
+                                    <i class="fa-solid fa-arrows-rotate fa-1x"></i>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="swiper-slide card">
+                            <div class="card-content">
+                                <div class="image">
+                                    <img src="./images/ec2_img.png">
+                                </div>
+        
+                                <div class="ec2_display">
+                                    <span class="ec2_name">EC2 Instance Name</span>
+                                    <span class="ec2_type">EC2 Type</span>
+                                </div>
+        
+                                <div class="ec2_info">  
+                                    <li>ID: i-87519665</li>
+                                    <li>State: Running</li>
+                                    <li>AMI: linux</li>
+                                    <li>IPV4: 0.0.0.0</li>
+                                </div>
+        
+                                <div class="instance_options">
+                                    <i class="fa-solid fa-play fa-1x"></i>
+                                    <i class="fa-solid fa-stop fa-1x"></i>
+                                    <i class="fa-solid fa-power-off fa-1x"></i>
+                                    <i class="fa-solid fa-arrows-rotate fa-1x"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            
+                <div class="swiper-button-next"></div>
+                <div class="swiper-button-prev"></div>
+                <div class="swiper-pagination"></div>
+            
+            </section>
+        </div>
+    </div>
+
+
+    
+    
+
+  <!-- Swiper JS -->
+  <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+
+  <!-- Initialize Swiper -->
+  <script>
+    var swiper = new Swiper(".mySwiper", {
+      slidesPerView: 3,
+      spaceBetween: 30,
+      slidesPerGroup: 3,
+      loop: true,
+      loopFillGroupWithBlank: true,
+      pagination: {
+        el: ".swiper-pagination",
+        clickable: true,
+      },
+      navigation: {
+        nextEl: ".swiper-button-next",
+        prevEl: ".swiper-button-prev",
+      },
+    });
+  </script>
+</body>
+</html>
