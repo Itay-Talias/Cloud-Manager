@@ -50,3 +50,14 @@ class AWS_Manager:
             filtered_instances.append(self.get_instance_info(instance.id))
 
         return filtered_instances
+
+    def stop_instance(self, instance_id: str) -> None:
+        try:
+            instance = self.ec2_resource.Instance(instance_id)
+            instance.stop()
+            instance.wait_until_stopped()
+        except Exception as e:
+            print(e)
+    
+
+
