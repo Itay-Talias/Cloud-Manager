@@ -13,6 +13,7 @@ app.mount("/FRONT", StaticFiles(directory="FRONT"), name="FRONT")
 accetable_states=["running","stopped","terminated"]
 accetable_types=["t2.micro"]
 
+
 def check_params(params_received: List[str],accetable_params: List[str]):
     if len(params_received)==0:
         return True
@@ -39,6 +40,26 @@ async def get_instances(states: str="",types: str="",response: Response=None) ->
         if types != "":    
             results = list(filter(lambda instance: instance["Type"] in types.split("_"), results))
     return results
+
+def terminate_instance(aws_manager: AWS_Manager ,instance_id: str,current_state: str):
+    a=5
+def stop_instance(aws_manager: AWS_Manager ,instance_id: str,current_state: str):
+    a=5
+def reboot_instance(aws_manager: AWS_Manager,instance_id: str,current_state: str):
+    a=5
+def start_instance(aws_manager: AWS_Manager,instance_id: str,current_state: str):
+    a=5
+
+@app.patch("instances/{instance_id}")
+async def operate(instance_id,request: Request ,response:Response) -> Dict[str:str]:
+    new_state = request.json()["new_state"]
+    AWS_ACCESS_KEY_ID=""
+    AWS_SECRET_ACCESS_KEY=""
+    aws_manager= AWS_Manager(AWS_ACCESS_KEY_ID,AWS_SECRET_ACCESS_KEY)
+    instance_info = aws_manager.get_instance_info(instance_id = instance_id)
+    operations_dict={"terminated":terminate_instance, "stopped": stop_instance, "running": start_instance , "reboot": reboot_instance}
+    operations_dict[new_state](aws_manager,instance_id=instance_id,current_state=instance_info["State"])
+    
 
 @app.get("/")
 async def root():
