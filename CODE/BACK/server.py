@@ -28,8 +28,7 @@ async def get_instances(states: str="",types: str="",response: Response=None) ->
     AWS_SECRET_ACCESS_KEY="fUwfq3H2uK+x9+RfyVTBnOPg6md4BTceJAjyeaUl"
     aws_manager= AWS_Manager(AWS_ACCESS_KEY_ID,AWS_SECRET_ACCESS_KEY)
     if states == "" and types == "":
-        response.status_code = status.HTTP_400_BAD_REQUEST
-        return {"Error": "no params received"}
+        results = aws_manager.get_all_instances()
     elif check_params(params_received= states,acceptable_params=acceptable_states)==False or check_params(params_received=types,acceptable_params=acceptable_types)==False:
         response.status_code = status.HTTP_400_BAD_REQUEST
         return {"Error": "states or types are invalid"}
