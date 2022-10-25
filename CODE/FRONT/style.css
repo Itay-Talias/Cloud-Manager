@@ -27,10 +27,10 @@ body{
 .card::before{
   content: "";
   position: absolute;
-  height: 40%;
+  height: 45%;
   width: 100%;
   background: #d18829;
-  border-radius: 20px 20px 0 0;
+  border-radius: 20px 20px 0 0;;
 }
 
 .card .card-content{
@@ -62,7 +62,7 @@ body{
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 10px;
+  margin-top: 30px;
 } 
 
 .ec2_display .ec2_name{
@@ -78,6 +78,10 @@ body{
 .card-content .ec2_info{
     margin-top: 10px;
     align-self: flex-start;
+}
+
+.card-content .ec2_info ul{
+  list-style-type: circle;
 }
 
 .card-content .ec2_info > li{
@@ -117,4 +121,12 @@ section{
   width: 1075px;
   display: flex;
   align-items: center;
+}
+
+.instance_options{
+  margin-top: 10px;
+}
+.instance_options > i{
+  margin: 0 10px;
+
 }
