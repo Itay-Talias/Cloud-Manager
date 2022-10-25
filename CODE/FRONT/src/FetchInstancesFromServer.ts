@@ -1,4 +1,4 @@
-class FetchDetailsFromAPI {
+class FetchInstancesFromServer {
     private static parsingJSONToEc2Instces(
         ec2InstanceArr: any[]
     ): ec2_instance[] {
@@ -13,14 +13,13 @@ class FetchDetailsFromAPI {
             };
         });
     }
-
-    public async GetInstanceByTypeAndStates(
+    public static async FetchInstanceByTypeAndStates(
         states: string = "",
         types: string = ""
     ): Promise<ec2_instance[]> {
         const ec2InstanceArr = await $.get(
             `./instances?states=${states}&types=${types}`
         );
-        return FetchDetailsFromAPI.parsingJSONToEc2Instces(ec2InstanceArr);
+        return this.parsingJSONToEc2Instces(ec2InstanceArr);
     }
 }
