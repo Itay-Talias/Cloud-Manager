@@ -136,35 +136,35 @@
                             <li>
                                 <label class="filter">
                                     running
-                                    <input type="checkbox" checked="checked" />
+                                    <input type="checkbox" id="running-check-box" checked="checked" />
                                     <span class="checkmark"></span>
                                 </label>
                             </li>
                             <li>
                                 <label class="filter">
                                     stopped
-                                    <input type="checkbox" checked="checked" />
+                                    <input type="checkbox" id="stopped-check-box" checked="checked" />
                                     <span class="checkmark"></span>
                                 </label>
                             </li>
                             <li>
                                 <label class="filter">
                                     termineted
-                                    <input type="checkbox" checked="checked" />
+                                    <input type="checkbox" id="terminated-check-box" checked="checked" />
                                     <span class="checkmark"></span>
                                 </label>
                             </li>
                             <li>
                                 <label class="filter">
                                     reboot
-                                    <input type="checkbox" checked="checked" />
+                                    <input type="checkbox" id="reboot-check-box" checked="checked" />
                                     <span class="checkmark"></span>
                                 </label>
                             </li>
                             <li>
                                 <label class="filter">
                                     t2-micro
-                                    <input type="checkbox" checked="checked" />
+                                    <input type="checkbox" id="t2-micro-check-box" checked="checked" />
                                     <span class="checkmark"></span>
                                 </label>
                             </li>
@@ -201,7 +201,7 @@
 
                         <div class="ec2_info">
                             <li class="card-id">ID: {{ID}}</li>
-                            <li>State: {{State}}</li>
+                            <li class="card-state">State: {{State}}</li>
                             <li>AMI: {{AMI}}</li>
                             <li>IPV4: {{PublicIPv4Address}}</li>
                         </div>

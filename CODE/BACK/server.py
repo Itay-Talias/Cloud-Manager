@@ -54,7 +54,6 @@ async def operate(instance_id, request: Request, response: Response):
     operations_dict = {"terminated": aws_manager.terminate_instance, "stopped": aws_manager.stop_instance,
                        "running": aws_manager.start_instance, "reboot": aws_manager.reboot_instance}
     operations_dict[new_state](instance_id)
-    return {"it worked"}
 
 
 @app.get("/")
@@ -63,4 +62,4 @@ async def root():
 
 if __name__ == "__main__":
     uvicorn.run("server:app", host="127.0.0.1",
-                port=8022, log_level="info", reload=True)
+                port=8025, log_level="info", reload=True)

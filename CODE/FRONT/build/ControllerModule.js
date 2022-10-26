@@ -37,3 +37,31 @@ $("body").on("click", ".refresh-button", function () {
         data.operate(instance_id, "reboot");
     });
 });
+$("body").on("click", "#filter-btn", function name() {
+    return __awaiter(this, void 0, void 0, function* () {
+        let states = "";
+        let types = "";
+        if ($("#running-check-box:checked").val() == "on") {
+            states += "_running";
+        }
+        if ($("#stopped-check-box:checked").val() == "on") {
+            states += "_stopped";
+        }
+        if ($("#terminated-check-box:checked").val() == "on") {
+            states += "_terminated";
+        }
+        if ($("#reboot-check-box:checked").val() == "on") {
+            states += "_reboot";
+        }
+        if ($("#t2-micro-check-box:checked").val() == "on") {
+            types += "_t2.micro";
+        }
+        if (states.length > 0) {
+            states = states.substring(1);
+        }
+        if (types.length > 0) {
+            types = types.substring(1);
+        }
+        render.renderInstances(data.filterInstancesByStatesAndTypes(states, types));
+    });
+});

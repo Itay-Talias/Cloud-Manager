@@ -39,4 +39,9 @@ class DataModel {
             });
         });
     }
+    filterInstancesByStatesAndTypes(states, types) {
+        let filtered_instances = this._ec2Instaces.filter(instance => states.split("_").includes(instance["State"])
+            && types.split("_").includes(instance["Type"]));
+        return filtered_instances;
+    }
 }
