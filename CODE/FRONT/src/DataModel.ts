@@ -37,10 +37,23 @@ class DataModel {
         });
     }
 
-    public filterInstancesByStatesAndTypes(states: string, types: string){
-        let filtered_instances = this._ec2Instaces.filter(instance => states.split("_").includes(instance["State"])
-                                &&types.split("_").includes(instance["Type"]));
-        return filtered_instances;
+    public filterInstancesByStatesAndTypes(states: string, types: string): EC2_Instance[] {
+        let filtered_instances: EC2_Instance[]
+        if(states.length>0 && types.length>0){
+            filtered_instances = this._ec2Instaces.filter(instance => states.split("_").includes(instance.State)
+                                &&types.split("_").includes(instance.Type));
+
+        }
+        else if(states.length>0){
+            filtered_instances = this._ec2Instaces.filter(instance => states.split("_").includes(instance.State))
+        }
+        else if(types.length>0){
+            filtered_instances = this._ec2Instaces.filter(instance => types.split("_").includes(instance.Type))
+        }
+        else{
+           filtered_instances =[]
+        }
+        return filtered_instances
     }
 
     public changeInstanceState(instance_id: string, new_state: string){
