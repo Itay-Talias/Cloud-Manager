@@ -27,9 +27,9 @@ class DataModel {
                 url: `/instances/${instance_id}`,
                 type: 'PATCH',
                 dataType: 'json',
-                data: {
+                data: JSON.stringify({
                     "state": new_state
-                },
+                }),
                 success: function (res) {
                     console.log(res);
                 },
