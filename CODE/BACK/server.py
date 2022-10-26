@@ -12,9 +12,9 @@ from fastapi.security import OAuth2PasswordRequestForm
 import authentication
 import user_class
 from passlib.context import CryptContext
+
+
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
-
-
 app = FastAPI()
 # app.mount("/FRONT", StaticFiles(directory="FRONT"), name="FRONT")
 
@@ -33,7 +33,7 @@ def check_params(params_received: List[str], acceptable_params: List[str]):
 
 @app.post("/Login")
 async def login(response: Response, form_data: OAuth2PasswordRequestForm = Depends()):
-    user_dict = authentication.db.get(form_data.username)  # DB
+    user_dict = authentication.get_user_from_db(form_data.username)
     if not user_dict:
         raise HTTPException(
             status_code=400, detail="Incorrect username or password or company")
