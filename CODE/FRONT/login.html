@@ -134,24 +134,31 @@
             let username = $("#username-input").val()
             let password = $("#password-input").val()
             let company = $("#company-input").val()
-            console.log(username, password, company);
-
+            
             let login_form = $(".login-form")[0]
-            document.location.href= "http://127.0.0.1:8012/FRONT/index.html";
-            // let formData = new FormData(login_form);
-            // $.ajax({
-            //     url: "./Login",
-            //     data: formData,
-            //     processData: false,
-            //     contentType: false,
-            //     type: 'POST',
-            //     success: function (data) {
-            //         window.location.href = "index.html";
-            //     },
-            //     error: function(request, status, error) {
-            //         console.log("error")
-            //     }
-            // });
+            let formData = new FormData({
+                "username": username,
+                "password": password,
+                "secret_client": company
+            });
+            $.ajax({
+                url: "./Login",
+                data: formData,
+                processData: false,
+                contentType: false,
+                type: 'POST',
+                success: function (data) {
+                    document.location.href= "FRONT/index.html";
+                },
+                error: function(xhr, text, error) {
+                    if (xhr.status == 400){
+                        alert("The username or password is incorrect")
+                    }
+                    if (xhr.status == 403){
+                        alert("Not Authenticated")
+                    }
+                }
+            });
         })
     </script>
 </body>
