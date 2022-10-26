@@ -19,7 +19,7 @@ app = FastAPI()
 app.mount("/FRONT", StaticFiles(directory="FRONT"), name="FRONT")
 
 acceptable_states = ["running", "stopped", "terminated"]
-acceptable_types = ["t2.micro"]
+acceptable_types = ["t2.micro", "t1.micro"], 
 
 
 def check_params(params_received: List[str], acceptable_params: List[str]):
