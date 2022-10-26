@@ -41,4 +41,12 @@ class DataModel {
                                 &&types.split("_").includes(instance["Type"]));
         return filtered_instances;
     }
+
+    public changeInstanceState(instance_id: string, new_state: string){
+        this._ec2Instaces.forEach((instance: EC2_Instance) =>{
+            if (instance.ID == instance_id){
+                instance.State=new_state
+            }
+        })
+    }
 }
