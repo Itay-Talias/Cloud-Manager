@@ -21,4 +21,22 @@ class DataModel {
                 yield FetchInstancesFromServer.FetchInstanceByTypeAndStates(states, types);
         });
     }
+    operate(instance_id, new_state) {
+        return __awaiter(this, void 0, void 0, function* () {
+            $.ajax({
+                url: `/instances/${instance_id}`,
+                type: 'PATCH',
+                dataType: 'json',
+                data: {
+                    "state": new_state
+                },
+                success: function (res) {
+                    console.log(res);
+                },
+                error: function (response) {
+                    console.log(response);
+                }
+            });
+        });
+    }
 }

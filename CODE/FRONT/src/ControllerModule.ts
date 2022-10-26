@@ -5,17 +5,21 @@ data.GetInstanceByTypeAndStates().then(() => {
     render.renderInstances(data.Ec2Instaces);
 });
 
-$("card").on("click", ".resume-button", async function () {
-    let instance_id: string = this.closest(".card").find(".ec2_name").text();
+$("body").on("click", ".resume-button", async function () {
+    let instance_id: string = $(this).closest(".card-content").find(".card-id").text().split(":")[1]
+    data.operate(instance_id,"running")
 });
 
-$("card").on("click", ".stop-button", async function () {
-    let instance_id: string = this.closest(".card").find(".ec2_name").text();
+$("body").on("click", ".stop-button", async function () {
+    let instance_id: string = $(this).closest(".card-content").find(".card-id").text().split(":")[1]
+    data.operate(instance_id,"stopped")
 });
 
-$("card").on("click", ".power-off-button", async function () {
-    let instance_id: string = this.closest(".card").find(".ec2_name").text();
+$("body").on("click", ".power-off-button", async function () {
+    let instance_id: string = $(this).closest(".card-content").find(".card-id").text().split(":")[1]
+    data.operate(instance_id,"terminated")
 });
-$("card").on("click", ".refresh-button", async function () {
-    let instance_id: string = this.closest(".card").find(".ec2_name").text();
+$("body").on("click", ".refresh-button", async function () {
+    let instance_id: string = $(this).closest(".card-content").find(".card-id").text().split(":")[1]
+    data.operate(instance_id,"reboot")   
 });

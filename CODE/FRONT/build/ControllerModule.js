@@ -13,23 +13,27 @@ const render = RenderModule();
 data.GetInstanceByTypeAndStates().then(() => {
     render.renderInstances(data.Ec2Instaces);
 });
-$("card").on("click", ".resume-button", function () {
+$("body").on("click", ".resume-button", function () {
     return __awaiter(this, void 0, void 0, function* () {
-        let instance_id = this.closest(".card").find(".ec2_name").text();
+        let instance_id = $(this).closest(".card-content").find(".card-id").text().split(":")[1];
+        data.operate(instance_id, "running");
     });
 });
-$("card").on("click", ".stop-button", function () {
+$("body").on("click", ".stop-button", function () {
     return __awaiter(this, void 0, void 0, function* () {
-        let instance_id = this.closest(".card").find(".ec2_name").text();
+        let instance_id = $(this).closest(".card-content").find(".card-id").text().split(":")[1];
+        data.operate(instance_id, "stopped");
     });
 });
-$("card").on("click", ".power-off-button", function () {
+$("body").on("click", ".power-off-button", function () {
     return __awaiter(this, void 0, void 0, function* () {
-        let instance_id = this.closest(".card").find(".ec2_name").text();
+        let instance_id = $(this).closest(".card-content").find(".card-id").text().split(":")[1];
+        data.operate(instance_id, "terminated");
     });
 });
-$("card").on("click", ".refresh-button", function () {
+$("body").on("click", ".refresh-button", function () {
     return __awaiter(this, void 0, void 0, function* () {
-        let instance_id = this.closest(".card").find(".ec2_name").text();
+        let instance_id = $(this).closest(".card-content").find(".card-id").text().split(":")[1];
+        data.operate(instance_id, "reboot");
     });
 });

@@ -19,4 +19,21 @@ class DataModel {
                 types
             );
     }
+
+    public async operate(instance_id: string,new_state: string){
+        $.ajax({
+            url: `/instances/${instance_id}`,
+            type: 'PATCH',
+            dataType: 'json',
+            data: {
+                "state": new_state
+            },
+            success: function(res) {
+                console.log(res);
+            },
+            error: function(response) {
+                console.log(response);
+            }
+        });
+    }
 }
