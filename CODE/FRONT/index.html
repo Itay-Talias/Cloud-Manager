@@ -136,35 +136,35 @@
                             <li>
                                 <label class="filter">
                                     running
-                                    <input type="checkbox" checked="checked" />
+                                    <input type="checkbox" id="running-check-box" checked="checked" />
                                     <span class="checkmark"></span>
                                 </label>
                             </li>
                             <li>
                                 <label class="filter">
                                     stopped
-                                    <input type="checkbox" checked="checked" />
+                                    <input type="checkbox" id="stopped-check-box" checked="checked" />
                                     <span class="checkmark"></span>
                                 </label>
                             </li>
                             <li>
                                 <label class="filter">
                                     termineted
-                                    <input type="checkbox" checked="checked" />
+                                    <input type="checkbox" id="terminated-check-box" checked="checked" />
                                     <span class="checkmark"></span>
                                 </label>
                             </li>
                             <li>
                                 <label class="filter">
                                     reboot
-                                    <input type="checkbox" checked="checked" />
+                                    <input type="checkbox" id="reboot-check-box" checked="checked" />
                                     <span class="checkmark"></span>
                                 </label>
                             </li>
                             <li>
                                 <label class="filter">
                                     t2-micro
-                                    <input type="checkbox" checked="checked" />
+                                    <input type="checkbox" id="t2-micro-check-box" checked="checked" />
                                     <span class="checkmark"></span>
                                 </label>
                             </li>
@@ -189,7 +189,7 @@
         <script id="instance-card-template" type="text/x-handlebars-template">
             {{#each instances}}
                 <div class="swiper-slide card">
-                    <div class="card-content">
+                    <div class="card-content" data-id="{{ID}}">
                         <div class="image">
                             <img src="./images/ec2_img.png" />
                         </div>
@@ -200,17 +200,17 @@
                         </div>
 
                         <div class="ec2_info">
-                            <li>ID: {{ID}}</li>
-                            <li>State: {{State}}</li>
+                            <li class="card-id">ID: {{ID}}</li>
+                            <li class="card-state">State: {{State}}</li>
                             <li>AMI: {{AMI}}</li>
                             <li>IPV4: {{PublicIPv4Address}}</li>
                         </div>
 
                         <div class="instance_options">
-                            <i class="fa-solid fa-play fa-1x"></i>
-                            <i class="fa-solid fa-stop fa-1x"></i>
-                            <i class="fa-solid fa-power-off fa-1x"></i>
-                            <i class="fa-solid fa-arrows-rotate fa-1x"></i>
+                            <i class="fa-solid fa-play fa-1x resume-button"></i>
+                            <i class="fa-solid fa-stop fa-1x stop-button"></i>
+                            <i class="fa-solid fa-power-off fa-1x power-off-button"></i>
+                            <i class="fa-solid fa-arrows-rotate fa-1x refresh-button"></i>
                         </div>
                     </div>
                 </div>
