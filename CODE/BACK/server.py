@@ -1,3 +1,4 @@
+import mock_data
 from unittest import result
 from requests import Response
 from fastapi import FastAPI, status,  HTTPException, Request, Response
@@ -7,11 +8,15 @@ from fastapi import Depends, FastAPI
 from AWS_manager import AWS_Manager
 from typing import List, Dict, Union
 from fastapi.responses import FileResponse
+from fastapi.security import OAuth2PasswordRequestForm
+from AUTH.authentication import get_current_user, get_user_from_db
+from AUTH.user_class import User
+from passlib.context import CryptContext
 
-import mock_data
 
+pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 app = FastAPI()
-app.mount("/FRONT", StaticFiles(directory="FRONT"), name="FRONT")
+# app.mount("/FRONT", StaticFiles(directory="FRONT"), name="FRONT")
 
 acceptable_states = ["running", "stopped", "terminated"]
 acceptable_types = ["t2.micro"]
@@ -26,8 +31,24 @@ def check_params(params_received: List[str], acceptable_params: List[str]):
     return True
 
 
+@app.post("/Login")
+async def login(response: Response, form_data: OAuth2PasswordRequestForm = Depends()):
+    user_dict = get_user_from_db(form_data.username)
+    if not user_dict:
+        raise HTTPException(
+            status_code=400, detail="Incorrect username or password or company")
+    user = User(**user_dict)
+    if not pwd_context.verify(form_data.password, user.password) or form_data.client_secret is user.company:
+        raise HTTPException(
+            status_code=400, detail="Incorrect username or password or company")
+    token = user.username + " " + user.company
+    response.set_cookie(key="Authorization", value="Bearer %s " %
+                        token, httponly=True)
+    return {"access_token": token, "token_type": "bearer"}
+
+
 @app.get("/instances/")
-async def get_instances(states: str = "", types: str = "", response: Response = None) -> List:
+async def get_instances(states: str = "", types: str = "", response: Response = None, current_user: User = Depends(get_current_user)) -> List:
     # aws_manager = AWS_Manager(AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY)
     # if states == "" and types == "":
     #     results = aws_manager.get_all_instances()
@@ -45,8 +66,8 @@ async def get_instances(states: str = "", types: str = "", response: Response = 
     return mock_data.MOCK_DATA
 
 
-@app.patch("/instances/{instance_id}")
-async def operate(instance_id, request: Request, response: Response):
+@app.patch("instances/{instance_id}")
+async def operate(instance_id, request: Request, response: Response, current_user: User = Depends(get_current_user)):
     req = await request.json()
     new_state = req["state"]
     AWS_ACCESS_KEY_ID = ""
@@ -60,6 +81,7 @@ async def operate(instance_id, request: Request, response: Response):
 @app.get("/")
 async def root():
     return FileResponse("./FRONT/index.html")
+
 
 if __name__ == "__main__":
     uvicorn.run("server:app", host="127.0.0.1",
