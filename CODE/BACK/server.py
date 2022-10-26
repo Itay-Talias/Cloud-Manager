@@ -47,7 +47,7 @@ async def get_instances(states: str = "", types: str = "", response: Response = 
 
 @app.patch("instances/{instance_id}")
 async def operate(instance_id, request: Request, response: Response):
-    new_state = request.json()["state"]
+    new_state = await request.json()["state"]
     AWS_ACCESS_KEY_ID = ""
     AWS_SECRET_ACCESS_KEY = ""
     aws_manager = AWS_Manager(AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY)
@@ -62,4 +62,4 @@ async def root():
 
 if __name__ == "__main__":
     uvicorn.run("server:app", host="127.0.0.1",
-                port=8012, log_level="info", reload=True)
+                port=8026, log_level="info", reload=True)

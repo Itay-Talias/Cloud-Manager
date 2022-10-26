@@ -21,4 +21,34 @@ class DataModel {
                 yield FetchInstancesFromServer.FetchInstanceByTypeAndStates(states, types);
         });
     }
+    operate(instance_id, new_state) {
+        return __awaiter(this, void 0, void 0, function* () {
+            $.ajax({
+                url: `/instances/${instance_id}`,
+                type: 'PATCH',
+                dataType: 'json',
+                data: {
+                    "state": new_state
+                },
+                success: function (res) {
+                    console.log(res);
+                },
+                error: function (response) {
+                    console.log(response);
+                }
+            });
+        });
+    }
+    filterInstancesByStatesAndTypes(states, types) {
+        let filtered_instances = this._ec2Instaces.filter(instance => states.split("_").includes(instance["State"])
+            && types.split("_").includes(instance["Type"]));
+        return filtered_instances;
+    }
+    changeInstanceState(instance_id, new_state) {
+        for (let i = 0; i < this.Ec2Instaces.length; i++) {
+            if (this.Ec2Instaces[i].ID == instance_id) {
+                this.Ec2Instaces[i].State = new_state;
+            }
+        }
+    }
 }
