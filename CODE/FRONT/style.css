@@ -184,7 +184,7 @@ section {
     cursor: pointer;
 }
 
-.content{
+.content-login{
     width: 100%;
     position: absolute;
     top: 50%;
@@ -194,17 +194,17 @@ section {
     color: #fff;
 }
 
-.content h1{
+.content-login h1{
     font-size: 70px;
 }
 
-.content p{
+.content-login p{
     margin: 20px auto;
     font-weight: 100px;
     line-height: 25px;
 }
 
-.content button{
+.content-login button{
     width: 200px;
     padding: 15px 0;
     text-align: center;
@@ -219,7 +219,7 @@ section {
     position: relative;
 }
 
-span{
+.content-login span{
     background: #009688;
     height: 100%;
     width: 0;
@@ -231,11 +231,11 @@ span{
     z-index: -1;
 }
 
-.content button:hover span{
+.content-login button:hover span{
     width: 100%;
 }
 
-.content button:hover{
+.content-login button:hover{
     border: none;
 }
 /* ======================================================================== */

@@ -4,14 +4,14 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" type="text/css" href="FRONT/style.css">
     <title>Document</title>
 </head>
 
 <body>
     <div class="banner">
         <div class="navbar">
-            <img class="logo" src="./images/logo.png" />
+            <img class="logo" src="FRONT/images/logo.png" />
             <ul>
                 <li><a href="#">Home</a></li>
                 <li><a href="#">About</a></li>
@@ -20,7 +20,7 @@
             </ul>
         </div>
 
-        <div class="content">
+        <div class="content-login">
             <div class="bg-container">
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -94,7 +94,7 @@
 
         <div id="login-popup">
             <div id="close-btn">&times;</div>
-            <div class="login-form">
+            <form class="login-form">
                 <h2>Log In</h2>
                 <div class="form-element">
                     <label for="username">Username</label>
@@ -114,25 +114,44 @@
                 <div class="form-element">
                     <button id="sign-in-btn">Sign In</button>
                 </div>
-            </div>
+            </form>
         </div>
-        
+
     </div>
 
     <script src="https://code.jquery.com/jquery-3.6.1.js" integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script>
     <script>
         $("#login-btn").on("click", function(){
-            console.log("login click");
             $("#login-popup").addClass("active")
         })
     
         $("#close-btn").on("click", function(){
-            console.log("close click");
             $("#login-popup").removeClass("active")
         })
 
-        $("#sign-in-btn").on("click", function(){
-            alert("hello")
+        $("#sign-in-btn").on("click", function(event){
+            event.preventDefault();
+            let username = $("#username-input").val()
+            let password = $("#password-input").val()
+            let company = $("#company-input").val()
+            console.log(username, password, company);
+
+            let login_form = $(".login-form")[0]
+            window.location.href = "/FRONT/index.html";
+            // let formData = new FormData(login_form);
+            // $.ajax({
+            //     url: "./Login",
+            //     data: formData,
+            //     processData: false,
+            //     contentType: false,
+            //     type: 'POST',
+            //     success: function (data) {
+            //         window.location.href = "index.html";
+            //     },
+            //     error: function(request, status, error) {
+            //         console.log("error")
+            //     }
+            // });
         })
     </script>
 </body>
