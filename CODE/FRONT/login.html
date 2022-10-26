@@ -90,32 +90,50 @@
                 Ullam laborum magnam cupiditate voluptatum facere atque. Inventore, dolores harum!</p>
             <button id="login-btn"><span></span>Login</button>
             <button id="register-btn"><span></span>Register</button>
+        </div>
 
-            <div id="login-popup">
-                <div id="close-btn">&times;</div>
-                <div class="login-form">
-                    <h2>Log In</h2>
-                    <div class="form-element">
-                        <label for="username">Username</label>
-                        <input type="text" id="username-input" placeholder="Enter username">
-                    </div>
-    
-                    <div class="form-element">
-                        <label for="password">Password</label>
-                        <input type="password" id="password-input" placeholder="Enter password">
-                    </div>
-    
-                    <div class="form-element">
-                        <label for="company">Company</label>
-                        <input type="text" id="company-input" placeholder="Enter company name">
-                    </div>
-    
-                    <div class="form-element">
-                        <button id="sign-in-btn">Sign In</button>
-                    </div>
+        <div id="login-popup">
+            <div id="close-btn">&times;</div>
+            <div class="login-form">
+                <h2>Log In</h2>
+                <div class="form-element">
+                    <label for="username">Username</label>
+                    <input type="text" id="username-input" placeholder="Enter username">
+                </div>
+
+                <div class="form-element">
+                    <label for="password">Password</label>
+                    <input type="password" id="password-input" placeholder="Enter password">
+                </div>
+
+                <div class="form-element">
+                    <label for="company">Company</label>
+                    <input type="text" id="company-input" placeholder="Enter company name">
+                </div>
+
+                <div class="form-element">
+                    <button id="sign-in-btn">Sign In</button>
                 </div>
             </div>
         </div>
+        
     </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.1.js" integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script>
+    <script>
+        $("#login-btn").on("click", function(){
+            console.log("login click");
+            $("#login-popup").addClass("active")
+        })
+    
+        $("#close-btn").on("click", function(){
+            console.log("close click");
+            $("#login-popup").removeClass("active")
+        })
+
+        $("#sign-in-btn").on("click", function(){
+            alert("hello")
+        })
+    </script>
 </body>
 </html>
