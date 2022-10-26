@@ -50,6 +50,7 @@
 
                     <div class="swiper-button-next"></div>
                     <div class="swiper-button-prev"></div>
+                    <br />
                     <div class="swiper-pagination"></div>
                 </section>
 
@@ -130,54 +131,55 @@
                 </div>
 
                 <div class="filter-bar">
-                    <ul>
-                        <li><label>Types:</label></li>
-                        <li>
-                            <label class="filter">
-                                t2-micro
-                                <input type="checkbox" checked="checked" />
-                                <span class="checkmark"></span>
-                            </label>
-                        </li>
-                        <li><label>States:</label></li>
-                        <li>
-                            <label class="filter">
-                                running
-                                <input type="checkbox" checked="checked" />
-                                <span class="checkmark"></span>
-                            </label>
-                        </li>
-                        <li>
-                            <label class="filter">
-                                stopped
-                                <input type="checkbox" checked="checked" />
-                                <span class="checkmark"></span>
-                            </label>
-                        </li>
-                        <li>
-                            <label class="filter">
-                                termineted
-                                <input type="checkbox" checked="checked" />
-                                <span class="checkmark"></span>
-                            </label>
-                        </li>
-                        <li>
-                            <label class="filter">
-                                reboot
-                                <input type="checkbox" checked="checked" />
-                                <span class="checkmark"></span>
-                            </label>
-                        </li>
-                        <li>
-                            <button
-                                id="filter-btn"
-                                class="btn btn-outline-secondary"
-                                type="button"
-                            >
-                                <i class="bi bi-funnel"></i> Filter
-                            </button>
-                        </li>
-                    </ul>
+                    <div class="states-filter">
+                        <ul>
+                            <li>
+                                <label class="filter">
+                                    running
+                                    <input type="checkbox" checked="checked" />
+                                    <span class="checkmark"></span>
+                                </label>
+                            </li>
+                            <li>
+                                <label class="filter">
+                                    stopped
+                                    <input type="checkbox" checked="checked" />
+                                    <span class="checkmark"></span>
+                                </label>
+                            </li>
+                            <li>
+                                <label class="filter">
+                                    termineted
+                                    <input type="checkbox" checked="checked" />
+                                    <span class="checkmark"></span>
+                                </label>
+                            </li>
+                            <li>
+                                <label class="filter">
+                                    reboot
+                                    <input type="checkbox" checked="checked" />
+                                    <span class="checkmark"></span>
+                                </label>
+                            </li>
+                            <li>
+                                <label class="filter">
+                                    t2-micro
+                                    <input type="checkbox" checked="checked" />
+                                    <span class="checkmark"></span>
+                                </label>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div>
+                        <button
+                            id="filter-btn"
+                            class="btn btn-outline-secondary"
+                            type="button"
+                        >
+                            <i class="bi bi-funnel"></i> Filter
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -193,7 +195,7 @@
                         </div>
 
                         <div class="ec2_display">
-                            <span class="ec2_name">{{ID}}</span>
+                            <span class="ec2_name">{{Name}}</span>
                             <span class="ec2_type">{{Type}}</span>
                         </div>
 
@@ -222,9 +224,9 @@
         <!-- Initialize Swiper -->
         <script>
             var swiper = new Swiper(".mySwiper", {
-                slidesPerView: 3,
-                spaceBetween: 30,
-                slidesPerGroup: 3,
+                slidesPerView: 5,
+                spaceBetween: 15,
+                slidesPerGroup: 5,
                 loop: true,
                 loopFillGroupWithBlank: true,
                 pagination: {

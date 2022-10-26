@@ -1,3 +1,4 @@
+from unittest import result
 from requests import Response
 from fastapi import FastAPI, status,  HTTPException, Request, Response
 from fastapi.staticfiles import StaticFiles
@@ -6,6 +7,8 @@ from fastapi import Depends, FastAPI
 from AWS_manager import AWS_Manager
 from typing import List, Dict, Union
 from fastapi.responses import FileResponse
+
+import mock_data
 
 app = FastAPI()
 app.mount("/FRONT", StaticFiles(directory="FRONT"), name="FRONT")
@@ -25,23 +28,21 @@ def check_params(params_received: List[str], acceptable_params: List[str]):
 
 @app.get("/instances/")
 async def get_instances(states: str = "", types: str = "", response: Response = None) -> List:
-    AWS_ACCESS_KEY_ID = "AKIAYPGB5TBPVQVBP3XJ"
-    AWS_SECRET_ACCESS_KEY = "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"
-    aws_manager = AWS_Manager(AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY)
-    if states == "" and types == "":
-        results = aws_manager.get_all_instances()
-    elif check_params(params_received=states, acceptable_params=acceptable_states) == False or check_params(params_received=types, acceptable_params=acceptable_types) == False:
-        response.status_code = status.HTTP_400_BAD_REQUEST
-        return {"Error": "states or types are invalid"}
-    elif states == "":
-        results = aws_manager.filter_instances_by_types(types=types.split("_"))
-    else:
-        results = aws_manager.filter_instances_by_states(
-            states=states.split("_"))
-        if types != "":
-            results = list(
-                filter(lambda instance: instance["Type"] in types.split("_"), results))
-    return results
+    # aws_manager = AWS_Manager(AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY)
+    # if states == "" and types == "":
+    #     results = aws_manager.get_all_instances()
+    # elif check_params(params_received=states, acceptable_params=acceptable_states) == False or check_params(params_received=types, acceptable_params=acceptable_types) == False:
+    #     response.status_code = status.HTTP_400_BAD_REQUEST
+    #     return {"Error": "states or types are invalid"}
+    # elif states == "":
+    #     results = aws_manager.filter_instances_by_types(types=types.split("_"))
+    # else:
+    #     results = aws_manager.filter_instances_by_states(
+    #         states=states.split("_"))
+    #     if types != "":
+    #         results = list(
+    #             filter(lambda instance: instance["Type"] in types.split("_"), results))
+    return mock_data.MOCK_DATA
 
 
 @app.patch("instances/{instance_id}")

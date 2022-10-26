@@ -9,7 +9,10 @@ class DataModel {
         return this._ec2Instaces;
     }
 
-    public async GetInstanceByTypeAndStates(states: string = "", types: string = ""){
+    public async GetInstanceByTypeAndStates(
+        states: string = "",
+        types: string = ""
+    ) {
         this._ec2Instaces =
             await FetchInstancesFromServer.FetchInstanceByTypeAndStates(
                 states,
