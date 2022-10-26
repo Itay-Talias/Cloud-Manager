@@ -16,7 +16,7 @@ from passlib.context import CryptContext
 
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 app = FastAPI()
-# app.mount("/FRONT", StaticFiles(directory="FRONT"), name="FRONT")
+app.mount("/FRONT", StaticFiles(directory="FRONT"), name="FRONT")
 
 acceptable_states = ["running", "stopped", "terminated"]
 acceptable_types = ["t2.micro"]
