@@ -58,7 +58,7 @@ async def operate(instance_id, request: Request, response: Response):
 
 @app.get("/")
 async def root():
-    return FileResponse("./FRONT/index.html")
+    return FileResponse("./FRONT/login.html")
 
 if __name__ == "__main__":
     uvicorn.run("server:app", host="127.0.0.1",
