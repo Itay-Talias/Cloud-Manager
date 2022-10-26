@@ -47,8 +47,8 @@ async def get_instances(states: str = "", types: str = "", response: Response = 
 
 @app.patch("/instances/{instance_id}")
 async def operate(instance_id, request: Request, response: Response):
-    a=5
-    new_state = request.json()["state"]
+    req = await request.json()
+    new_state = req["state"]
     AWS_ACCESS_KEY_ID = ""
     AWS_SECRET_ACCESS_KEY = ""
     aws_manager = AWS_Manager(AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY)
