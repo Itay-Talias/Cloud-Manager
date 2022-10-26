@@ -64,6 +64,9 @@ $("body").on("click", "#filter-btn", function name() {
         if ($("#t2-micro-check-box:checked").val() == "on") {
             types += "_t2.micro";
         }
+        if ($("#t1-micro-check-box:checked").val() == "on") {
+            types += "_t1.micro";
+        }
         if (states.length > 0) {
             states = states.substring(1);
         }

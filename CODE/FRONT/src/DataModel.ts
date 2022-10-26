@@ -20,46 +20,52 @@ class DataModel {
             );
     }
 
-    public async operate(instance_id: string,new_state: string){
+    public async operate(instance_id: string, new_state: string) {
         $.ajax({
             url: `/instances/${instance_id}`,
-            type: 'PATCH',
-            dataType: 'json',
-            data: {
-                "state": new_state
-            },
-            success: function(res) {
+            type: "PATCH",
+            dataType: "json",
+            data: JSON.stringify({
+                state: new_state,
+            }),
+            success: function (res) {
                 console.log(res);
             },
-            error: function(response) {
+            error: function (response) {
                 console.log(response);
-            }
+            },
         });
     }
 
-    public filterInstancesByStatesAndTypes(states: string, types: string): EC2_Instance[] {
-        let filtered_instances: EC2_Instance[]
-        if(states.length>0 && types.length>0){
-            filtered_instances = this._ec2Instaces.filter(instance => states.split("_").includes(instance.State)
-                                &&types.split("_").includes(instance.Type));
-
+    public filterInstancesByStatesAndTypes(
+        states: string,
+        types: string
+    ): EC2_Instance[] {
+        let filtered_instances: EC2_Instance[];
+        if (states.length > 0 && types.length > 0) {
+            filtered_instances = this._ec2Instaces.filter(
+                (instance) =>
+                    states.split("_").includes(instance.State) &&
+                    types.split("_").includes(instance.Type)
+            );
+        } else if (states.length > 0) {
+            filtered_instances = this._ec2Instaces.filter((instance) =>
+                states.split("_").includes(instance.State)
+            );
+        } else if (types.length > 0) {
+            filtered_instances = this._ec2Instaces.filter((instance) =>
+                types.split("_").includes(instance.Type)
+            );
+        } else {
+            filtered_instances = [];
         }
-        else if(states.length>0){
-            filtered_instances = this._ec2Instaces.filter(instance => states.split("_").includes(instance.State))
-        }
-        else if(types.length>0){
-            filtered_instances = this._ec2Instaces.filter(instance => types.split("_").includes(instance.Type))
-        }
-        else{
-           filtered_instances =[]
-        }
-        return filtered_instances
+        return filtered_instances;
     }
 
-    public changeInstanceState(instance_id: string, new_state: string){
-        for (let i=0;i<this.Ec2Instaces.length;i++){
-            if (this.Ec2Instaces[i].ID==instance_id){
-                this.Ec2Instaces[i].State=new_state
+    public changeInstanceState(instance_id: string, new_state: string) {
+        for (let i = 0; i < this.Ec2Instaces.length; i++) {
+            if (this.Ec2Instaces[i].ID == instance_id) {
+                this.Ec2Instaces[i].State = new_state;
             }
         }
     }

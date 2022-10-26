@@ -12,14 +12,15 @@ from fastapi.security import OAuth2PasswordRequestForm
 from AUTH.authentication import get_current_user, get_user_from_db
 from AUTH.user_class import User
 from passlib.context import CryptContext
+from config import AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY
 
 
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 app = FastAPI()
-app.mount("/FRONT", StaticFiles(directory="FRONT"), name="FRONT")
+# app.mount("/FRONT", StaticFiles(directory="FRONT"), name="FRONT")
 
 acceptable_states = ["running", "stopped", "terminated"]
-acceptable_types = ["t2.micro", "t1.micro"], 
+acceptable_types = ["t2.micro", "t1.micro"],
 
 
 def check_params(params_received: List[str], acceptable_params: List[str]):
@@ -38,7 +39,7 @@ async def login(response: Response, form_data: OAuth2PasswordRequestForm = Depen
         raise HTTPException(
             status_code=400, detail="Incorrect username or password or company")
     user = User(**user_dict)
-    if not pwd_context.verify(form_data.password, user.password) or form_data.client_secret is user.company:
+    if (not pwd_context.verify(form_data.password, user.password)) or form_data.client_secret is not user.company:
         raise HTTPException(
             status_code=400, detail="Incorrect username or password or company")
     token = user.username + " " + user.company
@@ -49,29 +50,27 @@ async def login(response: Response, form_data: OAuth2PasswordRequestForm = Depen
 
 @app.get("/instances/")
 async def get_instances(states: str = "", types: str = "", response: Response = None, current_user: User = Depends(get_current_user)) -> List:
-    # aws_manager = AWS_Manager(AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY)
-    # if states == "" and types == "":
-    #     results = aws_manager.get_all_instances()
-    # elif check_params(params_received=states, acceptable_params=acceptable_states) == False or check_params(params_received=types, acceptable_params=acceptable_types) == False:
-    #     response.status_code = status.HTTP_400_BAD_REQUEST
-    #     return {"Error": "states or types are invalid"}
-    # elif states == "":
-    #     results = aws_manager.filter_instances_by_types(types=types.split("_"))
-    # else:
-    #     results = aws_manager.filter_instances_by_states(
-    #         states=states.split("_"))
-    #     if types != "":
-    #         results = list(
-    #             filter(lambda instance: instance["Type"] in types.split("_"), results))
-    return mock_data.MOCK_DATA
+    aws_manager = AWS_Manager(AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY)
+    if states == "" and types == "":
+        results = aws_manager.get_all_instances()
+    elif check_params(params_received=states, acceptable_params=acceptable_states) == False or check_params(params_received=types, acceptable_params=acceptable_types) == False:
+        response.status_code = status.HTTP_400_BAD_REQUEST
+        return {"Error": "states or types are invalid"}
+    elif states == "":
+        results = aws_manager.filter_instances_by_types(types=types.split("_"))
+    else:
+        results = aws_manager.filter_instances_by_states(
+            states=states.split("_"))
+        if types != "":
+            results = list(
+                filter(lambda instance: instance["Type"] in types.split("_"), results))
+    return results
 
 
-@app.patch("instances/{instance_id}")
+@app.patch("/instances/{instance_id}")
 async def operate(instance_id, request: Request, response: Response, current_user: User = Depends(get_current_user)):
     req = await request.json()
     new_state = req["state"]
-    AWS_ACCESS_KEY_ID = ""
-    AWS_SECRET_ACCESS_KEY = ""
     aws_manager = AWS_Manager(AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY)
     operations_dict = {"terminated": aws_manager.terminate_instance, "stopped": aws_manager.stop_instance,
                        "running": aws_manager.start_instance, "reboot": aws_manager.reboot_instance}

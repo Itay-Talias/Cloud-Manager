@@ -25,31 +25,31 @@ class DataModel {
         return __awaiter(this, void 0, void 0, function* () {
             $.ajax({
                 url: `/instances/${instance_id}`,
-                type: 'PATCH',
-                dataType: 'json',
+                type: "PATCH",
+                dataType: "json",
                 data: JSON.stringify({
-                    "state": new_state
+                    state: new_state,
                 }),
                 success: function (res) {
                     console.log(res);
                 },
                 error: function (response) {
                     console.log(response);
-                }
+                },
             });
         });
     }
     filterInstancesByStatesAndTypes(states, types) {
         let filtered_instances;
         if (states.length > 0 && types.length > 0) {
-            filtered_instances = this._ec2Instaces.filter(instance => states.split("_").includes(instance.State)
-                && types.split("_").includes(instance.Type));
+            filtered_instances = this._ec2Instaces.filter((instance) => states.split("_").includes(instance.State) &&
+                types.split("_").includes(instance.Type));
         }
         else if (states.length > 0) {
-            filtered_instances = this._ec2Instaces.filter(instance => states.split("_").includes(instance.State));
+            filtered_instances = this._ec2Instaces.filter((instance) => states.split("_").includes(instance.State));
         }
         else if (types.length > 0) {
-            filtered_instances = this._ec2Instaces.filter(instance => types.split("_").includes(instance.Type));
+            filtered_instances = this._ec2Instaces.filter((instance) => types.split("_").includes(instance.Type));
         }
         else {
             filtered_instances = [];

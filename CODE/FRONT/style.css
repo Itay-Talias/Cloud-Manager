@@ -248,7 +248,7 @@ section {
     justify-content: center;
     flex-direction: column;
     padding: 35px 0;
-    position: fixed;
+    position: absolute;
     bottom: 20px;
 }
 
