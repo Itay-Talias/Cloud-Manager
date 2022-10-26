@@ -159,7 +159,7 @@
                 let formData = new FormData();
                 formData.append("username", username);
                 formData.append("password", password);
-                formData.append("secret_client", company);
+                formData.append("client_secret", company);
                 $.ajax({
                     url: "./Login",
                     data: formData,

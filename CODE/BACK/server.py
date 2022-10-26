@@ -17,7 +17,7 @@ from config import AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY
 
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 app = FastAPI()
-# app.mount("/FRONT", StaticFiles(directory="FRONT"), name="FRONT")
+app.mount("/FRONT", StaticFiles(directory="FRONT"), name="FRONT")
 
 acceptable_states = ["running", "stopped", "terminated"]
 acceptable_types = ["t2.micro", "t1.micro"],
@@ -39,7 +39,8 @@ async def login(response: Response, form_data: OAuth2PasswordRequestForm = Depen
         raise HTTPException(
             status_code=400, detail="Incorrect username or password or company")
     user = User(**user_dict)
-    if (not pwd_context.verify(form_data.password, user.password)) or form_data.client_secret is not user.company:
+    print(form_data.client_secret, user.company)
+    if (not pwd_context.verify(form_data.password, user.password)) or form_data.client_secret != user.company:
         raise HTTPException(
             status_code=400, detail="Incorrect username or password or company")
     token = user.username + " " + user.company
