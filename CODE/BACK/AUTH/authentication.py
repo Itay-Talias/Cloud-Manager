@@ -1,7 +1,6 @@
 from fastapi import HTTPException, status, Request
 from fastapi.security import OAuth2PasswordBearer
 from fastapi.security.utils import get_authorization_scheme_param
-import user_class
 from DB.sql_queries_constants import SELECT_USERINFO_BY_DETAILES
 from DB.db_manager import execute_select_query
 
@@ -29,7 +28,6 @@ oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
 
 
 def get_user_from_db(username: str):
-    print(execute_select_query(SELECT_USERINFO_BY_DETAILES, [username]))
     return execute_select_query(SELECT_USERINFO_BY_DETAILES, [username])
 
 
