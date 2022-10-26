@@ -28,7 +28,7 @@ MOCK_DATA = [
         "Name": "test1",
         "State": "running",
         "AMI": "ami-0b152cfd354c4c7a4",
-        "Type": "c6a.8xlarge",
+        "Type": "t1.micro",
         "Public_IPv4_address": "54.190.21.14"
     },
     {
@@ -36,7 +36,7 @@ MOCK_DATA = [
         "Name": "test2",
         "State": "running",
         "AMI": "ami-0b152cfd354c4c7a4",
-        "Type": "c6a.8xlarge",
+        "Type": "t1.micro",
         "Public_IPv4_address": "54.191.21.14"
     },
     {
@@ -44,7 +44,7 @@ MOCK_DATA = [
         "Name": "test3",
         "State": "running",
         "AMI": "ami-0b152cfd354c4c7a4",
-        "Type": "c6a.8xlarge",
+        "Type": "t1.micro",
         "Public_IPv4_address": "54.191.21.14"
     },
     {
@@ -52,7 +52,7 @@ MOCK_DATA = [
         "Name": "test4",
         "State": "running",
         "AMI": "ami-0b152cfd354c4c7a4",
-        "Type": "c6a.8xlarge",
+        "Type": "t1.micro",
         "Public_IPv4_address": "54.191.21.14"
     }
 ]
