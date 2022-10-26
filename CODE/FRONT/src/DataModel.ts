@@ -36,6 +36,7 @@ class DataModel {
             }
         });
     }
+
     public filterInstancesByStatesAndTypes(states: string, types: string){
         let filtered_instances = this._ec2Instaces.filter(instance => states.split("_").includes(instance["State"])
                                 &&types.split("_").includes(instance["Type"]));
@@ -43,10 +44,10 @@ class DataModel {
     }
 
     public changeInstanceState(instance_id: string, new_state: string){
-        this._ec2Instaces.forEach((instance: EC2_Instance) =>{
-            if (instance.ID == instance_id){
-                instance.State=new_state
+        for (let i=0;i<this.Ec2Instaces.length;i++){
+            if (this.Ec2Instaces[i].ID==instance_id){
+                this.Ec2Instaces[i].State=new_state
             }
-        })
+        }
     }
 }

@@ -6,27 +6,27 @@ data.GetInstanceByTypeAndStates().then(() => {
 });
 
 $("body").on("click", ".resume-button", async function () {
-    let instance_id: string = $(this).closest(".card-content").find(".card-id").text().split(":")[1]
+    let instance_id: string = $(this).closest(".card-content").data().id;
     data.operate(instance_id,"running")
     data.changeInstanceState(instance_id,"running")
     render.renderInstances(data.Ec2Instaces)
 });
 
 $("body").on("click", ".stop-button", async function () {
-    let instance_id: string = $(this).closest(".card-content").find(".card-id").text().split(":")[1]
+    let instance_id: string = $(this).closest(".card-content").data().id;
     data.operate(instance_id,"stopped")
     data.changeInstanceState(instance_id,"stopped")
     render.renderInstances(data.Ec2Instaces)
 });
 
 $("body").on("click", ".power-off-button", async function () {
-    let instance_id: string = $(this).closest(".card-content").find(".card-id").text().split(":")[1]
+    let instance_id: string = $(this).closest(".card-content").data().id;
     data.operate(instance_id,"terminated")
     data.changeInstanceState(instance_id,"terminated")
     render.renderInstances(data.Ec2Instaces)
 });
 $("body").on("click", ".refresh-button", async function () {
-    let instance_id: string = $(this).closest(".card-content").find(".card-id").text().split(":")[1]
+    let instance_id: string = $(this).closest(".card-content").data().id;
     data.operate(instance_id,"reboot")
     data.changeInstanceState(instance_id,"reboot")
     render.renderInstances(data.Ec2Instaces)   

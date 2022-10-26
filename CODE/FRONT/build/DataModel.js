@@ -44,4 +44,11 @@ class DataModel {
             && types.split("_").includes(instance["Type"]));
         return filtered_instances;
     }
+    changeInstanceState(instance_id, new_state) {
+        for (let i = 0; i < this.Ec2Instaces.length; i++) {
+            if (this.Ec2Instaces[i].ID == instance_id) {
+                this.Ec2Instaces[i].State = new_state;
+            }
+        }
+    }
 }
