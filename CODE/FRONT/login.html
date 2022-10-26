@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="FRONT/style.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="banner">
+        <div class="navbar">
+            <img class="logo" src="FRONT/images/logo.png" />
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Contact Us</a></li>
+                <li><a href="#">EC2</a></li>
+            </ul>
+        </div>
+
+        <div class="content-login">
+            <div class="bg-container">
+                <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                    width="100%"
+                    height="500px"
+                >
+                    <path
+                        id="shape1"
+                        fill-rule="evenodd"
+                        fill="rgb(35, 23, 123)"
+                        d="M-0.011,9.318 L8.682,6.988 L11.011,15.682 L2.318,18.011 L-0.011,9.318 Z"
+                    ></path>
+                    <path
+                        id="shape8"
+                        fill-rule="evenodd"
+                        fill="rgb(35, 23, 123)"
+                        d="M607.694,164.319 L612.680,161.693 L615.306,166.680 L610.320,169.305 L607.694,164.319 Z"
+                    ></path>
+                    <path
+                        id="shape9"
+                        fill-rule="evenodd"
+                        fill="rgb(93, 203, 250)"
+                        d="M667.343,205.646 L679.152,213.179 L671.620,224.988 L659.810,217.456 L667.343,205.646 Z"
+                    ></path>
+                    <path
+                        id="cir5"
+                        fill-rule="evenodd"
+                        fill="rgb(35, 23, 123)"
+                        d="M1165.000,8.000 C1167.761,8.000 1170.000,10.238 1170.000,13.000 C1170.000,15.761 1167.761,18.000 1165.000,18.000 C1162.239,18.000 1160.000,15.761 1160.000,13.000 C1160.000,10.238 1162.239,8.000 1165.000,8.000 Z"
+                    ></path>
+                    <path
+                        id="cir4"
+                        fill-rule="evenodd"
+                        fill="rgb(93, 203, 250)"
+                        d="M1303.500,118.000 C1304.881,118.000 1306.000,119.119 1306.000,120.500 C1306.000,121.880 1304.881,123.000 1303.500,123.000 C1302.119,123.000 1301.000,121.880 1301.000,120.500 C1301.000,119.119 1302.119,118.000 1303.500,118.000 Z"
+                    ></path>
+                    <path
+                        id="cir3"
+                        fill-rule="evenodd"
+                        fill="rgb(93, 203, 250)"
+                        d="M61.000,112.000 C62.657,112.000 64.000,113.343 64.000,115.000 C64.000,116.657 62.657,118.000 61.000,118.000 C59.343,118.000 58.000,116.657 58.000,115.000 C58.000,113.343 59.343,112.000 61.000,112.000 Z"
+                    ></path>
+                    <path
+                        id="cir2"
+                        fill-rule="evenodd"
+                        fill="rgb(74, 92, 246)"
+                        d="M265.500,-0.000 C271.299,-0.000 276.000,4.701 276.000,10.500 C276.000,16.299 271.299,21.000 265.500,21.000 C259.701,21.000 255.000,16.299 255.000,10.500 C255.000,4.701 259.701,-0.000 265.500,-0.000 Z"
+                    ></path>
+                    <path
+                        id="cir1"
+                        fill-rule="evenodd"
+                        fill="rgb(35, 23, 123)"
+                        d="M185.500,131.000 C187.985,131.000 190.000,133.015 190.000,135.500 C190.000,137.985 187.985,140.000 185.500,140.000 C183.015,140.000 181.000,137.985 181.000,135.500 C181.000,133.015 183.015,131.000 185.500,131.000 Z"
+                    ></path>
+                </svg>
+            </div>
+    
+            <div class="box">
+                <div class="wave one"></div>
+                <div class="wave two"></div>
+                <div class="wave three"></div>
+            </div>
+            <h1>CLOUD MANAGER</h1>
+            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Porro accusamus <br>
+                doloremque obcaecati odit officiis quod itaque iste repellat unde laborum. <br>
+                Ullam laborum magnam cupiditate voluptatum facere atque. Inventore, dolores harum!</p>
+            <button id="login-btn"><span></span>Login</button>
+            <button id="register-btn"><span></span>Register</button>
+        </div>
+
+        <div id="login-popup">
+            <div id="close-btn">&times;</div>
+            <form class="login-form">
+                <h2>Log In</h2>
+                <div class="form-element">
+                    <label for="username">Username</label>
+                    <input type="text" id="username-input" placeholder="Enter username">
+                </div>
+
+                <div class="form-element">
+                    <label for="password">Password</label>
+                    <input type="password" id="password-input" placeholder="Enter password">
+                </div>
+
+                <div class="form-element">
+                    <label for="company">Company</label>
+                    <input type="text" id="company-input" placeholder="Enter company name">
+                </div>
+
+                <div class="form-element">
+                    <button id="sign-in-btn">Sign In</button>
+                </div>
+            </form>
+        </div>
+
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.1.js" integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script>
+    <script>
+        $("#login-btn").on("click", function(){
+            $("#login-popup").addClass("active")
+        })
+    
+        $("#close-btn").on("click", function(){
+            $("#login-popup").removeClass("active")
+        })
+
+        $("#sign-in-btn").on("click", function(event){
+            event.preventDefault();
+            let username = $("#username-input").val()
+            let password = $("#password-input").val()
+            let company = $("#company-input").val()
+            
+            let login_form = $(".login-form")[0]
+            let formData = new FormData({
+                "username": username,
+                "password": password,
+                "secret_client": company
+            });
+            $.ajax({
+                url: "./Login",
+                data: formData,
+                processData: false,
+                contentType: false,
+                type: 'POST',
+                success: function (data) {
+                    document.location.href= "FRONT/index.html";
+                },
+                error: function(xhr, text, error) {
+                    if (xhr.status == 400){
+                        alert("The username or password is incorrect")
+                    }
+                    if (xhr.status == 403){
+                        alert("Not Authenticated")
+                    }
+                }
+            });
+        })
+    </script>
+</body>
+</html>

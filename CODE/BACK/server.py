@@ -80,7 +80,7 @@ async def operate(instance_id, request: Request, response: Response, current_use
 
 @app.get("/")
 async def root():
-    return FileResponse("./FRONT/index.html")
+    return FileResponse("./FRONT/login.html")
 
 
 if __name__ == "__main__":
