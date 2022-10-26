@@ -1,7 +1,7 @@
 from fastapi import HTTPException, status, Request
 from fastapi.security import OAuth2PasswordBearer
 from fastapi.security.utils import get_authorization_scheme_param
-from .user_class import User
+import user_class
 
 
 db = {
@@ -29,7 +29,7 @@ oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
 def get_user(db, username: str):
     if username in db:
         user_dict = db[username]
-        return User(**user_dict)
+        return user_class.User(**user_dict)
 
 
 async def get_current_user(request: Request):
