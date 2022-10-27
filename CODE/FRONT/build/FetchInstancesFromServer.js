@@ -23,7 +23,7 @@ class FetchInstancesFromServer {
     }
     static FetchInstanceByTypeAndStates(states = "", types = "") {
         return __awaiter(this, void 0, void 0, function* () {
-            const ec2InstanceArr = yield $.get(`http://localhost:8034/instances?states=${states}&types=${types}`);
+            const ec2InstanceArr = yield $.get(`http://localhost:8040/instances?states=${states}&types=${types}`);
             return this.parsingJSONToEc2Instces(ec2InstanceArr);
         });
     }

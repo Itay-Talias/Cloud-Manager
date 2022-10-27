@@ -91,4 +91,7 @@ $("body").on("click", ".image", function () {
             alert("Please allow popups for this website");
         }
     }
+    else {
+        alert("The ec2 instance is inactive");
+    }
 });

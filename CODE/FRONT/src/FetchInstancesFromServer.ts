@@ -18,7 +18,7 @@ class FetchInstancesFromServer {
         types: string = ""
     ): Promise<EC2_Instance[]> {
         const ec2InstanceArr = await $.get(
-            `http://localhost:8034/instances?states=${states}&types=${types}`
+            `http://localhost:8040/instances?states=${states}&types=${types}`
         );
         return this.parsingJSONToEc2Instces(ec2InstanceArr);
     }

@@ -7,3 +7,14 @@
 05:04:28: itayt successed login
 05:04:59: itayt filter instances by STATES = [], TYPES = []
 05:06:10: itayt successed login
+05:51:44: itayt successed login
+05:51:45: itayt filter instances by STATES = [], TYPES = []
+05:52:34: itayt change state of instance with id i-0d970d9557eac98a8 to running
+05:54:21: itayt change state of instance with id i-0d970d9557eac98a8 to stopped
+05:57:38: itayt successed login
+05:57:38: itayt filter instances by STATES = [], TYPES = []
+06:00:07: itayt change state of instance with id i-010aac3f54ef37fbd to running
+06:01:08: itayt change state of instance with id i-010aac3f54ef37fbd to stopped
+06:02:05: itayt filter instances by STATES = [], TYPES = []
+06:02:21: dekell successed login
+06:02:21: dekell filter instances by STATES = [], TYPES = []
