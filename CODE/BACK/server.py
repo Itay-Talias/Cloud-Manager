@@ -1,3 +1,5 @@
+from AUDIT.Audit_Manager import Audit_Manager
+from AUDIT import audit_activities_descriptions
 import mock_data
 from unittest import result
 from requests import Response
@@ -13,24 +15,15 @@ from AUTH.authentication import get_current_user, get_user_from_db
 from AUTH.user_class import User
 from passlib.context import CryptContext
 from config import AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY
+from datetime import datetime
+from cloud_managers_controller import Cloud_Managers_Controller
+import server_utills
 
 
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 app = FastAPI()
 app.mount("/FRONT", StaticFiles(directory="FRONT"), name="FRONT")
-
-acceptable_states = ["running", "stopped", "terminated"]
-acceptable_types = ["t2.micro", "t1.micro"],
-
-
-def check_params(params_received: List[str], acceptable_params: List[str]):
-    if len(params_received) == 0:
-        return True
-    for param_received in params_received.split("_"):
-        if param_received not in acceptable_params:
-            return False
-    return True
-
+cloud_managers_controller: Cloud_Managers_Controller = Cloud_Managers_Controller()
 
 @app.post("/Login")
 async def login(response: Response, form_data: OAuth2PasswordRequestForm = Depends()):
@@ -43,18 +36,26 @@ async def login(response: Response, form_data: OAuth2PasswordRequestForm = Depen
         raise HTTPException(
             status_code=400, detail="Incorrect username or password or company")
     token = user.username + " " + user.company
-    response.set_cookie(key="Authorization", value="Bearer %s " %
+    response.set_cookie(key="Authorization", value="Bearer %s" %
                         token, httponly=True)
+    cur_time = datetime.now()
+    description = audit_activities_descriptions.USER_LOGIN.format(user.username)
+    audit_manager = cloud_managers_controller.get_audit_instance_by_client_name(user.company)
+    audit_manager.write_activity(cur_time, description)
     return {"access_token": token, "token_type": "bearer"}
 
 
 @app.get("/instances/")
 async def get_instances(states: str = "", types: str = "", response: Response = None, current_user: User = Depends(get_current_user)) -> List:
-    aws_manager = AWS_Manager(AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY)
+    aws_manager = cloud_managers_controller.get_client_instance_by_client_name(current_user.split(" ")[1])
+    cur_time = datetime.now()
+    username = current_user.split(" ")[0]
+    description = ""
     if states == "" and types == "":
         results = aws_manager.get_all_instances()
-    elif check_params(params_received=states, acceptable_params=acceptable_states) == False or check_params(params_received=types, acceptable_params=acceptable_types) == False:
+    elif server_utills.check_params(params_received=states, acceptable_params=server_utills.acceptable_states) == False or server_utills.check_params(params_received=types, acceptable_params=server_utills.acceptable_types) == False:
         response.status_code = status.HTTP_400_BAD_REQUEST
+        description = audit_activities_descriptions.INSTANCES_FILTER_FAILED.format(username, states, types)
         return {"Error": "states or types are invalid"}
     elif states == "":
         results = aws_manager.filter_instances_by_types(types=types.split("_"))
@@ -64,6 +65,9 @@ async def get_instances(states: str = "", types: str = "", response: Response = 
         if types != "":
             results = list(
                 filter(lambda instance: instance["Type"] in types.split("_"), results))
+    description = audit_activities_descriptions.INSTANCES_FILTER_SUCCESS.format(username, states, types)
+    audit_manager = cloud_managers_controller.get_audit_instance_by_client_name(current_user.split(" ")[1])
+    audit_manager.write_activity(cur_time, description)
     return results
 
 
@@ -71,10 +75,15 @@ async def get_instances(states: str = "", types: str = "", response: Response = 
 async def operate(instance_id, request: Request, response: Response, current_user: User = Depends(get_current_user)):
     req = await request.json()
     new_state = req["state"]
-    aws_manager = AWS_Manager(AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY)
+    aws_manager = cloud_managers_controller.get_client_instance_by_client_name(current_user.split(" ")[1])
     operations_dict = {"terminated": aws_manager.terminate_instance, "stopped": aws_manager.stop_instance,
                        "running": aws_manager.start_instance, "reboot": aws_manager.reboot_instance}
     operations_dict[new_state](instance_id)
+    cur_time = datetime.now()
+    username = current_user.split(" ")[0]
+    description = audit_activities_descriptions.INSTANCE_METHOD.format(username, instance_id, new_state)
+    audit_manager = cloud_managers_controller.get_audit_instance_by_client_name(current_user.split(" ")[1])
+    audit_manager.write_activity(cur_time, description)
 
 
 @app.get("/")
@@ -84,4 +93,4 @@ async def root():
 
 if __name__ == "__main__":
     uvicorn.run("server:app", host="127.0.0.1",
-                port=8034, log_level="info", reload=True)
+                port=8040, log_level="info", reload=True)
