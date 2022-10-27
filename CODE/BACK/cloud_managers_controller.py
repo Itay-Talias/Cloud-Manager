@@ -1,6 +1,6 @@
 from AWS_manager import AWS_Manager
 
-class Cloud_managers_controller:
+class Cloud_Managers_Controller:
     def __init__(self):
         self.client_cloud_connections = {}
 

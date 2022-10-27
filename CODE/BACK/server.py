@@ -13,26 +13,14 @@ from AUTH.authentication import get_current_user, get_user_from_db
 from AUTH.user_class import User
 from passlib.context import CryptContext
 from config import AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY
-from cloud_managers_controller import Cloud_managers_controller
+from cloud_managers_controller import Cloud_Managers_Controller
 from audit_controller import Audit_Controller
-
+import server_utills
 
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 app = FastAPI()
 app.mount("/FRONT", StaticFiles(directory="FRONT"), name="FRONT")
-
-acceptable_states = ["running", "stopped", "terminated"]
-acceptable_types = ["t2.micro", "t1.micro"]
-cloud_managers_controller: Cloud_managers_controller = Cloud_managers_controller({"cyberark":{"connection":AWS_Manager(AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY) ,"audit": Audit_Controller()}})
-
-def check_params(params_received: List[str], acceptable_params: List[str]):
-    if len(params_received) == 0:
-        return True
-    for param_received in params_received.split("_"):
-        if param_received not in acceptable_params:
-            return False
-    return True
-
+cloud_managers_controller: Cloud_Managers_Controller = Cloud_Managers_Controller({"cyberark":{"connection":AWS_Manager(AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY) ,"audit": Audit_Controller()}})
 
 @app.post("/Login")
 async def login(response: Response, form_data: OAuth2PasswordRequestForm = Depends()):
@@ -56,7 +44,7 @@ async def get_instances(states: str = "", types: str = "", response: Response = 
     aws_manager = cloud_managers_controller.get_client_instance_by_client_name(current_user.company)
     if states == "" and types == "":
         results = aws_manager.get_all_instances()
-    elif check_params(params_received=states, acceptable_params=acceptable_states) == False or check_params(params_received=types, acceptable_params=acceptable_types) == False:
+    elif server_utills.check_params(params_received=states, acceptable_params=server_utills.acceptable_states) == False or server_utills.check_params(params_received=types, acceptable_params=server_utills.acceptable_types) == False:
         response.status_code = status.HTTP_400_BAD_REQUEST
         return {"Error": "states or types are invalid"}
     elif states == "":
