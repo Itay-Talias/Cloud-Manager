@@ -20,7 +20,7 @@ import server_utills
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 app = FastAPI()
 app.mount("/FRONT", StaticFiles(directory="FRONT"), name="FRONT")
-cloud_managers_controller: Cloud_Managers_Controller = Cloud_Managers_Controller({"cyberark":{"connection":AWS_Manager(AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY) ,"audit": Audit_Controller()}})
+cloud_managers_controller: Cloud_Managers_Controller = Cloud_Managers_Controller()
 
 @app.post("/Login")
 async def login(response: Response, form_data: OAuth2PasswordRequestForm = Depends()):
