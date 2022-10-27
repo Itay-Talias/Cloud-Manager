@@ -8,7 +8,7 @@ class Audit_Manager:
     
 
     def write_activity(self, activity_time: datetime, description: str) -> None:
-        with open(self.audit_file, 'w+') as log_file:
+        with open(self.audit_file, 'a+') as log_file:
             current_time = activity_time.strftime("%H:%M:%S")
             log_file.write(f"{current_time}: {description}")
 
