@@ -34,14 +34,14 @@ async def login(response: Response, form_data: OAuth2PasswordRequestForm = Depen
         raise HTTPException(
             status_code=400, detail="Incorrect username or password or company")
     token = user.username + " " + user.company
-    response.set_cookie(key="Authorization", value="Bearer %s " %
+    response.set_cookie(key="Authorization", value="Bearer %s" %
                         token, httponly=True)
     return {"access_token": token, "token_type": "bearer"}
 
 
 @app.get("/instances/")
 async def get_instances(states: str = "", types: str = "", response: Response = None, current_user: User = Depends(get_current_user)) -> List:
-    aws_manager = cloud_managers_controller.get_client_instance_by_client_name(current_user.company)
+    aws_manager = cloud_managers_controller.get_client_instance_by_client_name(current_user.split(" ")[1])
     if states == "" and types == "":
         results = aws_manager.get_all_instances()
     elif server_utills.check_params(params_received=states, acceptable_params=server_utills.acceptable_states) == False or server_utills.check_params(params_received=types, acceptable_params=server_utills.acceptable_types) == False:
@@ -62,11 +62,10 @@ async def get_instances(states: str = "", types: str = "", response: Response = 
 async def operate(instance_id, request: Request, response: Response, current_user: User = Depends(get_current_user)):
     req = await request.json()
     new_state = req["state"]
-    aws_manager = cloud_managers_controller.get_client_instance_by_client_name(current_user.company)
+    aws_manager = cloud_managers_controller.get_client_instance_by_client_name(current_user.split(" ")[1])
     operations_dict = {"terminated": aws_manager.terminate_instance, "stopped": aws_manager.stop_instance,
                        "running": aws_manager.start_instance, "reboot": aws_manager.reboot_instance}
     operations_dict[new_state](instance_id)
-
 
 @app.get("/")
 async def root():
@@ -75,4 +74,4 @@ async def root():
 
 if __name__ == "__main__":
     uvicorn.run("server:app", host="127.0.0.1",
-                port=8034, log_level="info", reload=True)
+                port=8040, log_level="info", reload=True)

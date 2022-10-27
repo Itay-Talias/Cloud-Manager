@@ -3,7 +3,8 @@ from audit_controller import Audit_Controller
 from config import AWS_ACCESS_KEY_ID,AWS_SECRET_ACCESS_KEY
 class Cloud_Managers_Controller:
     def __init__(self):
-        self.client_cloud_connections = {"cyberark":{"connection":AWS_Manager(AWS_ACCESS_KEY_ID,AWS_SECRET_ACCESS_KEY) ,"audit": Audit_Controller()}}
+        aws_manager = AWS_Manager(aws_access_key_id=AWS_ACCESS_KEY_ID, aws_secret_access_key=AWS_SECRET_ACCESS_KEY)
+        self.client_cloud_connections = {"cyberark":{"connection":aws_manager ,"audit": Audit_Controller()}}
 
     def add_client(self, client_name: str, client_access_key_id: str, client_access_secret_key_id: str) -> None:
         aws_manager = AWS_Manager(
