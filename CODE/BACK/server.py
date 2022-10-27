@@ -39,7 +39,6 @@ async def login(response: Response, form_data: OAuth2PasswordRequestForm = Depen
         raise HTTPException(
             status_code=400, detail="Incorrect username or password or company")
     user = User(**user_dict)
-    print(form_data.client_secret, user.company)
     if (not pwd_context.verify(form_data.password, user.password)) or form_data.client_secret != user.company:
         raise HTTPException(
             status_code=400, detail="Incorrect username or password or company")
