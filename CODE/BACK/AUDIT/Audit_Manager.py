@@ -1,5 +1,4 @@
 from datetime import datetime
-from AUTH.user_class import User
 
 class Audit_Manager:
     def __init__(self, comapny_name: str) -> None:
