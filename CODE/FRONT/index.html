@@ -136,42 +136,66 @@
                             <li>
                                 <label class="filter">
                                     running
-                                    <input type="checkbox" id="running-check-box" checked="checked" />
+                                    <input
+                                        type="checkbox"
+                                        id="running-check-box"
+                                        checked="checked"
+                                    />
                                     <span class="checkmark"></span>
                                 </label>
                             </li>
                             <li>
                                 <label class="filter">
                                     stopped
-                                    <input type="checkbox" id="stopped-check-box" checked="checked" />
+                                    <input
+                                        type="checkbox"
+                                        id="stopped-check-box"
+                                        checked="checked"
+                                    />
                                     <span class="checkmark"></span>
                                 </label>
                             </li>
                             <li>
                                 <label class="filter">
                                     termineted
-                                    <input type="checkbox" id="terminated-check-box" checked="checked" />
+                                    <input
+                                        type="checkbox"
+                                        id="terminated-check-box"
+                                        checked="checked"
+                                    />
                                     <span class="checkmark"></span>
                                 </label>
                             </li>
                             <li>
                                 <label class="filter">
                                     reboot
-                                    <input type="checkbox" id="reboot-check-box" checked="checked" />
+                                    <input
+                                        type="checkbox"
+                                        id="reboot-check-box"
+                                        checked="checked"
+                                    />
                                     <span class="checkmark"></span>
                                 </label>
                             </li>
                             <li>
                                 <label class="filter">
                                     t2-micro
-                                    <input type="checkbox" id="t2-micro-check-box" checked="checked" />
+                                    <input
+                                        type="checkbox"
+                                        id="t2-micro-check-box"
+                                        checked="checked"
+                                    />
                                     <span class="checkmark"></span>
                                 </label>
                             </li>
                             <li>
                                 <label class="filter">
                                     t1-micro
-                                    <input type="checkbox" id="t1-micro-check-box" checked="checked" />
+                                    <input
+                                        type="checkbox"
+                                        id="t1-micro-check-box"
+                                        checked="checked"
+                                    />
                                     <span class="checkmark"></span>
                                 </label>
                             </li>
@@ -210,14 +234,18 @@
                             <li class="card-id">ID: {{ID}}</li>
                             <li class="card-state">State: {{State}}</li>
                             <li>AMI: {{AMI}}</li>
-                            <li>IPV4: {{PublicIPv4Address}}</li>
+                            <li class="ip">IPV4: {{PublicIPv4Address}}</li>
                         </div>
 
                         <div class="instance_options">
                             <i class="fa-solid fa-play fa-1x resume-button"></i>
                             <i class="fa-solid fa-stop fa-1x stop-button"></i>
-                            <i class="fa-solid fa-power-off fa-1x power-off-button"></i>
-                            <i class="fa-solid fa-arrows-rotate fa-1x refresh-button"></i>
+                            <i
+                                class="fa-solid fa-power-off fa-1x power-off-button"
+                            ></i>
+                            <i
+                                class="fa-solid fa-arrows-rotate fa-1x refresh-button"
+                            ></i>
                         </div>
                     </div>
                 </div>

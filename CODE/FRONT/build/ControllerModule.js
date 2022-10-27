@@ -76,3 +76,22 @@ $("body").on("click", "#filter-btn", function name() {
         render.renderInstances(data.filterInstancesByStatesAndTypes(states, types));
     });
 });
+$("body").on("click", ".image", function () {
+    let instance_ip = $(this)
+        .closest(".card-content")
+        .find(".ip")
+        .text()
+        .split(" ")[1];
+    if (instance_ip.length != 0) {
+        const win = window.open(`http://localhost:8888/?hostname=${instance_ip}&username=ec2-user&password=STF0MmEzeTQh`, "_blank");
+        if (win) {
+            win.focus();
+        }
+        else {
+            alert("Please allow popups for this website");
+        }
+    }
+    else {
+        alert("The ec2 instance is inactive");
+    }
+});
