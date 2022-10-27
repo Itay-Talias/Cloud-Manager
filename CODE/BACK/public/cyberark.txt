@@ -18,3 +18,30 @@
 06:02:05: itayt filter instances by STATES = [], TYPES = []
 06:02:21: dekell successed login
 06:02:21: dekell filter instances by STATES = [], TYPES = []
+09:59:42: itayt successed login
+09:59:54: itayt filter instances by STATES = [], TYPES = []
+10:01:48: itayt successed login
+10:01:49: itayt filter instances by STATES = [], TYPES = []
+10:02:53: itayt change state of instance with id i-0d970d9557eac98a8 to running
+10:03:58: itayt filter instances by STATES = [], TYPES = []
+10:07:54: itayt successed login
+10:07:54: itayt filter instances by STATES = [], TYPES = []
+10:09:25: itayt change state of instance with id i-0d970d9557eac98a8 to stopped
+10:14:36: itayt successed login
+10:14:36: itayt filter instances by STATES = [], TYPES = []
+10:19:44: itayt change state of instance with id i-0f5e7b274486de9f5 to stopped
+10:19:53: itayt filter instances by STATES = [], TYPES = []
+12:12:44: itayt successed login
+12:12:44: itayt filter instances by STATES = [], TYPES = []
+12:13:54: itayt change state of instance with id i-0f5e7b274486de9f5 to stopped
+12:14:07: itayt filter instances by STATES = [], TYPES = []
+12:20:16: itayt successed login
+12:20:17: itayt filter instances by STATES = [], TYPES = []
+12:21:33: itayt change state of instance with id i-0f5e7b274486de9f5 to running
+12:22:48: itayt filter instances by STATES = [], TYPES = []
+13:39:42: itayt successed login
+13:39:43: itayt filter instances by STATES = [], TYPES = []
+13:58:40: itayt successed login
+13:58:41: itayt filter instances by STATES = [], TYPES = []
+13:59:51: itayt change state of instance with id i-0f5e7b274486de9f5 to stopped
+13:59:52: itayt filter instances by STATES = [], TYPES = []
